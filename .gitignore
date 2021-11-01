@@ -70,5 +70,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-/DevTools/node_modules/
-/DevTools/tmp/
+/Editor/DevTools/node_modules/
+/Editor/DevTools/tmp/
