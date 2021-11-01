@@ -1,0 +1,16 @@
+{
+    "name": "Obsidize.FastNoise.EditorTools",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0a1408b0103f7844d9237e40f2a169b4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

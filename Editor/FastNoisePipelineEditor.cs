@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEditor;
+using Obsidize.FastNoise;
 
-namespace Obsidize.FastNoise
+namespace Obsidize.FastNoise.EditorTools
 {
 	[CustomEditor(typeof(FastNoisePipeline))]
 	public class FastNoisePipelineEditor : FastNoisePreviewEditorBase

@@ -1,6 +1,7 @@
 using UnityEditor;
+using Obsidize.FastNoise;
 
-namespace Obsidize.FastNoise
+namespace Obsidize.FastNoise.EditorTools
 {
 
 	[CustomEditor(typeof(FastNoiseOptions))]
