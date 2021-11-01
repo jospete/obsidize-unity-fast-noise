@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e784cc9cc044a45a74d0d96738136c, type: 3}
+  m_Name: PipelineSample_Terrain
+  m_EditorClassIdentifier: 
+  preview:
+    seed: 1450
+    lowColor: {r: 0, g: 0, b: 0, a: 1}
+    highColor: {r: 1, g: 1, b: 1, a: 1}
+    offset: {x: -773, y: -1841}
+    density: 2
+    zoom: 0.107
+  layers:
+  - target: {fileID: 11400000, guid: 8847413b572a5f84da0151a38ac84e1e, type: 2}
+    influence: 3
+  - target: {fileID: 11400000, guid: 004c7b14bcd842143a93f5bc57aa5c2e, type: 2}
+    influence: 6
+  - target: {fileID: 11400000, guid: 6eca444ad49deaa459723e62201192ec, type: 2}
+    influence: 4
+  _totalInfluence: 13
