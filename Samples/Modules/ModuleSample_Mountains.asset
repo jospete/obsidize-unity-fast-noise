@@ -19,6 +19,28 @@ MonoBehaviour:
     offset: {x: -1137, y: 2745}
     density: 4
     zoom: 1
+  _preview:
+    seed: 1337
+    lowColor: {r: 0, g: 0, b: 0, a: 1}
+    highColor: {r: 1, g: 1, b: 1, a: 1}
+    offset: {x: -1137, y: 2745}
+    density: 4
+    zoom: 1
+  _options:
+    _noiseType: 2
+    _rotationType3D: 0
+    _frequency: 0.008
+    _fractalType: 1
+    _octaves: 4
+    _lacunarity: 0
+    _gain: 0
+    _weightedStrength: 4.97
+    _pingPongStength: 0
+    _cellularDistanceFunction: 2
+    _cellularReturnType: 0
+    _cellularJitterModifier: 2.32
+    _domainWarpType: 0
+    _domainWarpAmp: 191.3
   _noiseType: 2
   _rotationType3D: 0
   _frequency: 0.008

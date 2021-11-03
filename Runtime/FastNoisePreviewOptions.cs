@@ -5,6 +5,7 @@ namespace Obsidize.FastNoise
 	[System.Serializable]
 	public class FastNoisePreviewOptions
 	{
+
 		private const int densityMin = 1;
 		private const int densityMax = 8;
 		private const float zoomMin = 0.01f;
@@ -14,11 +15,24 @@ namespace Obsidize.FastNoise
 		public Color lowColor = Color.black;
 		public Color highColor = Color.white;
 		public Vector2Int offset = Vector2Int.zero;
-		[Range(densityMin, densityMax)] public int density = 2;
-		[Range(zoomMin, zoomMax)] public float zoom = 0.5f;
 
-		public int PreviewAspect => density * 64;
-		public float ZoomStep => Mathf.Max(1f, 1 / Mathf.Max(zoomMin, zoom));
+		[Range(densityMin, densityMax)] [SerializeField] private int _density = 2;
+		[Range(zoomMin, zoomMax)] [SerializeField] private float _zoom = 0.5f;
+
+		public int Density
+		{
+			get => _density;
+			set => _density = Mathf.Clamp(value, densityMin, densityMax);
+		}
+
+		public float Zoom
+		{
+			get => _zoom;
+			set => _zoom = Mathf.Clamp(value, zoomMin, zoomMax);
+		}
+
+		public int PreviewAspect => Density * 64;
+		public float ZoomStep => Mathf.Max(1f, 1 / Mathf.Max(zoomMin, Zoom));
 		public int RoundedZoomStep => Mathf.RoundToInt(ZoomStep);
 
 		private Color32[] _colorBuffer;
@@ -30,7 +44,8 @@ namespace Obsidize.FastNoise
 
 		public void Validate()
 		{
-			density = Mathf.Clamp(density, densityMin, densityMax);
+			Density = Density;
+			Zoom = Zoom;
 		}
 
 		public void ResetOffset()

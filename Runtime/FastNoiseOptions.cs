@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Obsidize.FastNoise
 {
-
 	using NoiseType = FastNoiseLite.NoiseType;
 	using RotationType3D = FastNoiseLite.RotationType3D;
 	using FractalType = FastNoiseLite.FractalType;
@@ -10,16 +9,12 @@ namespace Obsidize.FastNoise
 	using CellularReturnType = FastNoiseLite.CellularReturnType;
 	using DomainWarpType = FastNoiseLite.DomainWarpType;
 
-	[CreateAssetMenu(menuName = "Fast Noise/Module", fileName = "FastNoiseModule")]
-	public class FastNoiseOptions : FastNoisePipelineModule
+	[System.Serializable]
+	public class FastNoiseOptions
 	{
 
 		private const int octavesMin = 1;
 		private const int octavesMax = 12;
-
-		protected readonly FastNoiseLite noise = new FastNoiseLite();
-
-		public FastNoisePreviewOptions preview = new FastNoisePreviewOptions();
 
 		[Header("General")]
 		[SerializeField] private NoiseType _noiseType = NoiseType.OpenSimplex2;
@@ -127,41 +122,12 @@ namespace Obsidize.FastNoise
 			set => _domainWarpAmp = value;
 		}
 
-		private void Awake()
-		{
-			noise.SetOptions(this);
-		}
-
-		private void OnValidate()
+		public void Validate()
 		{
 			Frequency = Frequency;
 			Octaves = Octaves;
 			Lacunarity = Lacunarity;
 			Gain = Gain;
-			if (preview != null) preview.Validate();
-		}
-
-		public override void SetSeed(int seed)
-		{
-			noise.SetOptions(this);
-			noise.SetSeed(seed);
-		}
-
-		public override float GetNoise(float x, float y)
-		{
-			return noise.At(x, y);
-		}
-
-		public override float GetNoise(float x, float y, float z)
-		{
-			return noise.At(x, y, z);
-		}
-
-		public void DrawPreview(Texture2D texture)
-		{
-			if (noise == null || preview == null) return;
-			noise.SetOptions(this);
-			preview.DrawPreviewTexture(this, texture);
 		}
 	}
 }

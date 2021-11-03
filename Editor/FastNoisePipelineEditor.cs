@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using Obsidize.FastNoise;
 
 namespace Obsidize.FastNoise.EditorTools
 {
@@ -11,7 +10,7 @@ namespace Obsidize.FastNoise.EditorTools
 		private FastNoisePipeline _pipeline;
 		private bool _didUpdateProperties;
 
-		public override FastNoisePreviewOptions FastNoisePreview => _pipeline?.preview;
+		public override FastNoisePreviewOptions FastNoisePreview => _pipeline?.Preview;
 
 		public override void UpdatePreviewTexture()
 		{

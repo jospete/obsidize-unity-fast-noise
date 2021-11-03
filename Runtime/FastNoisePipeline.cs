@@ -7,18 +7,19 @@ namespace Obsidize.FastNoise
 	public class FastNoisePipeline : FastNoisePipelineModule
 	{
 
-		public FastNoisePreviewOptions preview = new FastNoisePreviewOptions();
+		[SerializeField] private FastNoisePreviewOptions _preview = new FastNoisePreviewOptions();
 		public FastNoisePipelineEntry[] layers;
 
 		[HideInInspector] [SerializeField] private float _totalInfluence;
 
+		public FastNoisePreviewOptions Preview => _preview;
 		public bool HasLayers => layers != null && layers.Length > 0;
 		public float TotalInfluence => _totalInfluence;
 
 		public void DrawPreview(Texture2D texture)
 		{
-			if (preview == null || !HasLayers) return;
-			preview.DrawPreviewTexture(this, texture);
+			if (_preview == null || !HasLayers) return;
+			_preview.DrawPreviewTexture(this, texture);
 		}
 
 		public bool ContainsModule(FastNoisePipelineModule module)

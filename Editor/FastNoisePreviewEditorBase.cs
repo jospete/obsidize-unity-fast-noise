@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using Obsidize.FastNoise;
 
 namespace Obsidize.FastNoise.EditorTools
 {
@@ -22,6 +21,15 @@ namespace Obsidize.FastNoise.EditorTools
 
 		public abstract void UpdatePreviewTexture();
 
+		private void UpdateZoom(float delta)
+		{
+
+			if (FastNoisePreview == null) return;
+
+			FastNoisePreview.Zoom += delta;
+			UpdatePreviewTexture();
+		}
+
 		private void UpdateConfigOffset(Vector2 delta)
 		{
 
@@ -41,10 +49,18 @@ namespace Obsidize.FastNoise.EditorTools
 			var preview = FastNoisePreview;
 			if (preview == null) return;
 
-			Event e = Event.current;
+			var e = Event.current;
 			var type = e.type;
+			var isMouseInPreviewArea = previewArea.Contains(e.mousePosition);
 
-			if (type == EventType.MouseDown && !_hasActiveDrag && previewArea.Contains(e.mousePosition))
+			if (type == EventType.ScrollWheel && isMouseInPreviewArea)
+			{
+				UpdateZoom(e.delta.y * -0.025f);
+				e.Use();
+				return;
+			}
+
+			if (type == EventType.MouseDown && !_hasActiveDrag && isMouseInPreviewArea)
 			{
 				_hasActiveDrag = true;
 				e.Use();

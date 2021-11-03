@@ -51,32 +51,32 @@ namespace Obsidize.FastNoise
 			return GetLerpDomainWarpNoise(noise, x, y, z);
 		}
 
-		public static void SetPreviewOptions(this FastNoiseLite noise, FastNoiseOptions config)
+		public static void SetPreviewOptions(this FastNoiseLite noise, FastNoiseOptions options, FastNoisePreviewOptions previewOptions)
 		{
-			if (noise == null || config == null || config.preview == null) return;
+			if (noise == null || options == null || previewOptions == null) return;
 
-			noise.SetOptions(config);
-			noise.SetSeed(config.preview.seed);
+			noise.SetOptions(options);
+			noise.SetSeed(previewOptions.seed);
 		}
 
-		public static void SetOptions(this FastNoiseLite noise, FastNoiseOptions config)
+		public static void SetOptions(this FastNoiseLite noise, FastNoiseOptions options)
 		{
-			if (noise == null || config == null) return;
+			if (noise == null || options == null) return;
 
-			noise.SetFrequency(config.Frequency);
-			noise.SetFractalType(config.FractalType);
-			noise.SetFractalLacunarity(config.Lacunarity);
-			noise.SetFractalWeightedStrength(config.WeightedStrength);
-			noise.SetFractalPingPongStrength(config.PingPongStrength);
-			noise.SetCellularDistanceFunction(config.CellularDistanceFunction);
-			noise.SetCellularReturnType(config.CellularReturnType);
-			noise.SetCellularJitter(config.CellularJitterModifier);
-			noise.SetDomainWarpAmp(config.DomainWarpAmp);
-			noise.SetNoiseType(config.NoiseType);
-			noise.SetFractalOctaves(config.Octaves);
-			noise.SetFractalGain(config.Gain);
-			noise.SetDomainWarpType(config.DomainWarpType);
-			noise.SetRotationType3D(config.RotationType3D);
+			noise.SetFrequency(options.Frequency);
+			noise.SetFractalType(options.FractalType);
+			noise.SetFractalLacunarity(options.Lacunarity);
+			noise.SetFractalWeightedStrength(options.WeightedStrength);
+			noise.SetFractalPingPongStrength(options.PingPongStrength);
+			noise.SetCellularDistanceFunction(options.CellularDistanceFunction);
+			noise.SetCellularReturnType(options.CellularReturnType);
+			noise.SetCellularJitter(options.CellularJitterModifier);
+			noise.SetDomainWarpAmp(options.DomainWarpAmp);
+			noise.SetNoiseType(options.NoiseType);
+			noise.SetFractalOctaves(options.Octaves);
+			noise.SetFractalGain(options.Gain);
+			noise.SetDomainWarpType(options.DomainWarpType);
+			noise.SetRotationType3D(options.RotationType3D);
 		}
 	}
 }

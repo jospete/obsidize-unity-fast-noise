@@ -1,17 +1,16 @@
 using UnityEditor;
-using Obsidize.FastNoise;
 
 namespace Obsidize.FastNoise.EditorTools
 {
 
-	[CustomEditor(typeof(FastNoiseOptions))]
-	public class FastNoiseOptionsEditor : FastNoisePreviewEditorBase
+	[CustomEditor(typeof(FastNoisePreset))]
+	public class FastNoisePresetEditor : FastNoisePreviewEditorBase
 	{
 
-		private FastNoiseOptions _config;
+		private FastNoisePreset _config;
 		private bool _didUpdateConfig;
 
-		public override FastNoisePreviewOptions FastNoisePreview => _config?.preview;
+		public override FastNoisePreviewOptions FastNoisePreview => _config?.Preview;
 
 		public override void UpdatePreviewTexture()
 		{
@@ -21,7 +20,7 @@ namespace Obsidize.FastNoise.EditorTools
 		public override void OnInspectorGUI()
 		{
 			_didUpdateConfig = DrawDefaultInspector();
-			_config = target as FastNoiseOptions;
+			_config = target as FastNoisePreset;
 			DrawFastNoisePreviewOptions(_didUpdateConfig);
 		}
 	}
