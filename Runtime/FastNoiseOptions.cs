@@ -26,16 +26,16 @@ namespace Obsidize.FastNoise
 
 		[Header("General")]
 
-		[Tooltip("Sets noise algorithm used for GetNoise(...)")]
 		[SerializeField]
+		[Tooltip("Sets noise algorithm used for GetNoise(...)")]
 		private NoiseType _noiseType = NoiseType.OpenSimplex2;
 
-		[Tooltip("Sets domain rotation type for 3D Noise and 3D DomainWarp. Can aid in reducing directional artifacts when sampling a 2D plane in 3D")]
 		[SerializeField]
+		[Tooltip("Sets domain rotation type for 3D Noise and 3D DomainWarp. Can aid in reducing directional artifacts when sampling a 2D plane in 3D")]
 		private RotationType3D _rotationType3D = RotationType3D.None;
 
-		[Tooltip("Sets frequency for all noise types")]
 		[SerializeField]
+		[Tooltip("Sets frequency for all noise types")]
 		private float _frequency = 0.01f;
 
 		[Header("Fractals")]

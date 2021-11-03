@@ -32,6 +32,6 @@ MonoBehaviour:
     _cellularDistanceFunction: 1
     _cellularReturnType: 0
     _cellularJitterModifier: 2.63
-    _useDomainWarp: 1
+    _useDomainWarp: 0
     _domainWarpType: 2
     _domainWarpAmp: 2.05
