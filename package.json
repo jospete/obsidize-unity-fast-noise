@@ -24,5 +24,12 @@
 		"perlin",
 		"simplex",
 		"voronoi"
+	],
+	"samples": [
+		{
+			"displayName": "Presets",
+			"description": "Useful noise map presets to start from",
+			"path": "Samples~/SamplesPresets"
+		}
 	]
 }
