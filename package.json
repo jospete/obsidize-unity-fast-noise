@@ -29,7 +29,7 @@
 		{
 			"displayName": "Presets",
 			"description": "Useful noise map presets to start from",
-			"path": "Samples~/SamplesPresets"
+			"path": "Samples/SamplesPresets"
 		}
 	]
 }
