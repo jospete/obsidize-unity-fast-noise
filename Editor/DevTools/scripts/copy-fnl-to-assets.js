@@ -7,7 +7,7 @@ const destPath = '../Runtime/FastNoiseLite.cs';
 
 const copyFnlToAssets = () => {
 	const input = fs.readFileSync(sourcePath, 'utf8');
-	const output = `namespace obsidize.FastNoise {\n${input}\n}`;
+	const output = `namespace Obsidize.FastNoise {\n${input}\n}`;
 	fs.writeFileSync(destPath, output, 'utf8');
 };
 

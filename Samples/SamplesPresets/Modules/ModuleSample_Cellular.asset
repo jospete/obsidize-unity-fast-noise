@@ -12,20 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3929a84b50c4d754b88c5539398ee801, type: 3}
   m_Name: ModuleSample_Cellular
   m_EditorClassIdentifier: 
-  preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
-    density: 3
-    zoom: 0.5
   _preview:
     seed: 1337
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
     offset: {x: 0, y: 0}
-    density: 3
-    zoom: 0.5
+    _density: 2
+    _zoom: 0.5
   _options:
     _noiseType: 2
     _rotationType3D: 0
@@ -39,19 +32,6 @@ MonoBehaviour:
     _cellularDistanceFunction: 1
     _cellularReturnType: 2
     _cellularJitterModifier: 4.26
+    _useDomainWarp: 0
     _domainWarpType: 2
     _domainWarpAmp: 0
-  _noiseType: 2
-  _rotationType3D: 0
-  _frequency: 0.8
-  _fractalType: 1
-  _octaves: 4
-  _lacunarity: 0.43
-  _gain: 4.38
-  _weightedStrength: 0.8
-  _pingPongStength: 0
-  _cellularDistanceFunction: 1
-  _cellularReturnType: 2
-  _cellularJitterModifier: 4.26
-  _domainWarpType: 2
-  _domainWarpAmp: 0
