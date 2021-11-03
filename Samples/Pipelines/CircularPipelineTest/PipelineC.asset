@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e784cc9cc044a45a74d0d96738136c, type: 3}
   m_Name: PipelineC
   m_EditorClassIdentifier: 
-  preview:
+  _preview:
     seed: 1337
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
     offset: {x: 0, y: 0}
-    density: 3
+    _density: 2
+    _zoom: 0.5
   layers:
   - target: {fileID: 0}
     influence: 0
