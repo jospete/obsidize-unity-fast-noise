@@ -39,12 +39,12 @@ namespace Obsidize.FastNoise
 
 		public override float GetNoise(float x, float y)
 		{
-			return noise.At(x, y);
+			return noise.At(x, y, Options.UseDomainWarp);
 		}
 
 		public override float GetNoise(float x, float y, float z)
 		{
-			return noise.At(x, y, z);
+			return noise.At(x, y, z, Options.UseDomainWarp);
 		}
 
 		public void DrawPreview(Texture2D texture)

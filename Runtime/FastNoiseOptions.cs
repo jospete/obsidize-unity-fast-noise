@@ -13,35 +13,90 @@ namespace Obsidize.FastNoise
 	public class FastNoiseOptions
 	{
 
+		private const float frequencyMin = 0.001f;
+		private const float lacunarityMin = 0f;
+		private const float gainMin = 0f;
+		private const float pingPongStrengthMin = 0f;
+
+		private const float weightedStrengthMin = 0f;
+		private const float weightedStrengthMax = 1f;
+
 		private const int octavesMin = 1;
 		private const int octavesMax = 12;
 
 		[Header("General")]
-		[SerializeField] private NoiseType _noiseType = NoiseType.OpenSimplex2;
-		[SerializeField] private RotationType3D _rotationType3D = RotationType3D.None;
-		[SerializeField] private float _frequency = 0.01f;
+
+		[Tooltip("Sets noise algorithm used for GetNoise(...)")]
+		[SerializeField]
+		private NoiseType _noiseType = NoiseType.OpenSimplex2;
+
+		[Tooltip("Sets domain rotation type for 3D Noise and 3D DomainWarp. Can aid in reducing directional artifacts when sampling a 2D plane in 3D")]
+		[SerializeField]
+		private RotationType3D _rotationType3D = RotationType3D.None;
+
+		[Tooltip("Sets frequency for all noise types")]
+		[SerializeField]
+		private float _frequency = 0.01f;
 
 		[Header("Fractals")]
-		[SerializeField] private FractalType _fractalType = FractalType.FBm;
-		[SerializeField] private int _octaves = 4;
-		[SerializeField] private float _lacunarity = 2.0f;
-		[SerializeField] private float _gain = 0.5f;
-		[SerializeField] private float _weightedStrength = 0.15f;
-		[SerializeField] private float _pingPongStength = 0f;
+
+		[SerializeField]
+		[Tooltip("Sets method for combining octaves in all fractal noise types. Note: FractalType.DomainWarp... only affects DomainWarp(...)")]
+		private FractalType _fractalType = FractalType.FBm;
+
+		[SerializeField]
+		[Tooltip("Sets octave count for all fractal noise types")]
+		private int _octaves = 4;
+
+		[SerializeField]
+		[Tooltip("Sets octave lacunarity for all fractal noise types")]
+		private float _lacunarity = 2.0f;
+
+		[SerializeField]
+		[Tooltip("Sets octave gain for all fractal noise types")]
+		private float _gain = 0.5f;
+
+		[SerializeField]
+		[Tooltip("Sets octave weighting for all none DomainWarp fratal types")]
+		[Range(weightedStrengthMin, weightedStrengthMax)]
+		private float _weightedStrength = 0.15f;
+
+		[SerializeField]
+		[Tooltip("Sets strength of the fractal ping pong effect")]
+		private float _pingPongStength = 2f;
 
 		[Header("Cellular")]
-		[SerializeField] private CellularDistanceFunction _cellularDistanceFunction = CellularDistanceFunction.EuclideanSq;
-		[SerializeField] private CellularReturnType _cellularReturnType = CellularReturnType.Distance;
-		[SerializeField] private float _cellularJitterModifier = 0f;
+
+		[SerializeField]
+		[Tooltip("Sets distance function used in cellular noise calculations")]
+		private CellularDistanceFunction _cellularDistanceFunction = CellularDistanceFunction.EuclideanSq;
+
+		[SerializeField]
+		[Tooltip("Sets return type from cellular noise calculations")]
+		private CellularReturnType _cellularReturnType = CellularReturnType.Distance;
+
+		[SerializeField]
+		[Tooltip("Sets the maximum distance a cellular point can move from it's grid position. Note: Setting this higher than 1 will cause artifacts")]
+		private float _cellularJitterModifier = 1f;
 
 		[Header("Domain Warp")]
-		[SerializeField] private DomainWarpType _domainWarpType = DomainWarpType.BasicGrid;
-		[SerializeField] private float _domainWarpAmp = 0f;
+
+		[SerializeField]
+		[Tooltip("Toggles usage of DomainWarp(...) in GetNoise(...) calculations")]
+		private bool _useDomainWarp = true;
+
+		[SerializeField]
+		[Tooltip("Sets the warp algorithm when using DomainWarp(...)")]
+		private DomainWarpType _domainWarpType = DomainWarpType.OpenSimplex2;
+
+		[SerializeField]
+		[Tooltip("Sets the maximum warp distance from original position when using DomainWarp(...)")]
+		private float _domainWarpAmp = 1f;
 
 		public float Frequency
 		{
 			get => _frequency;
-			set => _frequency = Mathf.Max(0.001f, value);
+			set => _frequency = Mathf.Max(value, frequencyMin);
 		}
 
 		public NoiseType NoiseType
@@ -71,25 +126,25 @@ namespace Obsidize.FastNoise
 		public float Lacunarity
 		{
 			get => _lacunarity;
-			set => _lacunarity = Mathf.Max(0f, value);
+			set => _lacunarity = Mathf.Max(value, lacunarityMin);
 		}
 
 		public float Gain
 		{
 			get => _gain;
-			set => _gain = Mathf.Max(0f, value);
+			set => _gain = Mathf.Max(value, gainMin);
 		}
 
 		public float WeightedStrength
 		{
 			get => _weightedStrength;
-			set => _weightedStrength = value;
+			set => _weightedStrength = Mathf.Clamp(value, weightedStrengthMin, weightedStrengthMax);
 		}
 
 		public float PingPongStrength
 		{
 			get => _pingPongStength;
-			set => _pingPongStength = value;
+			set => _pingPongStength = Mathf.Max(value, pingPongStrengthMin);
 		}
 
 		public CellularDistanceFunction CellularDistanceFunction
@@ -110,6 +165,12 @@ namespace Obsidize.FastNoise
 			set => _cellularJitterModifier = value;
 		}
 
+		public bool UseDomainWarp
+		{
+			get => _useDomainWarp;
+			set => _useDomainWarp = value;
+		}
+
 		public DomainWarpType DomainWarpType
 		{
 			get => _domainWarpType;
@@ -128,6 +189,8 @@ namespace Obsidize.FastNoise
 			Octaves = Octaves;
 			Lacunarity = Lacunarity;
 			Gain = Gain;
+			WeightedStrength = WeightedStrength;
+			PingPongStrength = PingPongStrength;
 		}
 	}
 }

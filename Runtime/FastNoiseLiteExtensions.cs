@@ -39,16 +39,24 @@ namespace Obsidize.FastNoise
 			return ScaleNoiseValue(GetDomainWarpNoise(noise, x, y, z));
 		}
 
-		// Simplified alias of GetLerpDomainWarpNoise()
 		public static float At(this FastNoiseLite noise, float x, float y)
 		{
 			return GetLerpDomainWarpNoise(noise, x, y);
 		}
 
-		// Simplified alias of GetLerpDomainWarpNoise()
 		public static float At(this FastNoiseLite noise, float x, float y, float z)
 		{
 			return GetLerpDomainWarpNoise(noise, x, y, z);
+		}
+
+		public static float At(this FastNoiseLite noise, float x, float y, bool domainWarp)
+		{
+			return domainWarp ? GetLerpDomainWarpNoise(noise, x, y) : GetLerpNoise(noise, x, y);
+		}
+
+		public static float At(this FastNoiseLite noise, float x, float y, float z, bool domainWarp)
+		{
+			return domainWarp ? GetLerpDomainWarpNoise(noise, x, y, z) : GetLerpNoise(noise, x, y, z);
 		}
 
 		public static void SetPreviewOptions(this FastNoiseLite noise, FastNoiseOptions options, FastNoisePreviewOptions previewOptions)
