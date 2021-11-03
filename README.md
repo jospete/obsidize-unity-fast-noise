@@ -21,9 +21,9 @@ Each module and pipeline asset will have a set of "preview" options to change th
 
 ## Samples
 
-Useful starting point assets can be found under the "Sample Assets" folder.
+Import the Presets sample for useful starting point assets.
 
 ## Customization
 
 If you need to adjust how noise values are obtained from a module, 
-make a custom class that extends ```FastNoiseOptions``` and override the ```GetNoise(x, y)``` / ```GetNoise(x, y, z)``` methods.
+make a custom class that extends ```FastNoisePreset``` and override the ```GetNoise(x, y)``` / ```GetNoise(x, y, z)``` methods.

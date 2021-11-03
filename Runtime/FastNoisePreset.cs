@@ -33,7 +33,7 @@ namespace Obsidize.FastNoise
 
 		public override void SetSeed(int seed)
 		{
-			noise.SetOptions(Options);
+			SyncOptions();
 			noise.SetSeed(seed);
 		}
 
@@ -50,6 +50,7 @@ namespace Obsidize.FastNoise
 		public void DrawPreview(Texture2D texture)
 		{
 			if (noise == null || Preview == null) return;
+
 			SyncOptions();
 			Preview.DrawPreviewTexture(this, texture);
 		}
