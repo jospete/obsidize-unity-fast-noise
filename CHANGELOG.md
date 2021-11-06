@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.0.6
+
+- Add utility methods to FastNoisePipelineModule for autofilling from Vector*** constructs
+
+## 1.0.5
+
+- Documentation updates
+- Code formatting
+
 ## 1.0.4
 
 - Add option to disable domain warping
