@@ -74,7 +74,7 @@ namespace Obsidize.FastNoise
 			return false;
 		}
 
-		public void DrawPreviewTexture(FastNoisePipelineModule noise, Texture2D texture)
+		public void DrawPreviewTexture(FastNoiseModule noise, Texture2D texture)
 		{
 			if (noise == null || texture == null) return;
 
@@ -88,7 +88,7 @@ namespace Obsidize.FastNoise
 			texture.Apply();
 		}
 
-		protected Color32[] GetPreviewTextureColors(FastNoisePipelineModule noise, int width, int height)
+		protected Color32[] GetPreviewTextureColors(FastNoiseModule noise, int width, int height)
 		{
 
 			if (noise == null) return null;

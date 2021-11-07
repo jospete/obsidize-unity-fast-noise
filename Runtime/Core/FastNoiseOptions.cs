@@ -9,6 +9,15 @@ namespace Obsidize.FastNoise
 	using CellularReturnType = FastNoiseLite.CellularReturnType;
 	using DomainWarpType = FastNoiseLite.DomainWarpType;
 
+	/// <summary>
+	/// Core options exposed by the Auburn/FastNoiseLite implementation.
+	/// This is designed to be a pure link-layer between the unity editor and
+	/// the FastNoiseLite class, with as little intrusion on the core API as possible.
+	///
+	/// Other non-FastNoiseLite constructs added by the Obsidize.FastNoise package
+	/// will be placed in a separate class / file, with functionality extensions
+	/// based on the core FastNoiseLite implementation.
+	/// </summary>
 	[System.Serializable]
 	public class FastNoiseOptions
 	{

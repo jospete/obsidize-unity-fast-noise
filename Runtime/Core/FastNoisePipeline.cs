@@ -4,29 +4,21 @@ namespace Obsidize.FastNoise
 {
 
 	[CreateAssetMenu(menuName = "Fast Noise/Pipeline", fileName = "FastNoisePipeline")]
-	public class FastNoisePipeline : FastNoisePipelineModule
+	public class FastNoisePipeline : FastNoiseModule
 	{
 
-		[SerializeField] private FastNoisePreviewOptions _preview = new FastNoisePreviewOptions();
-		public FastNoisePipelineEntry[] layers;
-
+		[SerializeField] private FastNoisePipelineEntry[] _layers;
 		[HideInInspector] [SerializeField] private float _totalInfluence;
 
-		public FastNoisePreviewOptions Preview => _preview;
-		public bool HasLayers => layers != null && layers.Length > 0;
+		public int LayerCount => _layers?.Length ?? 0;
+		public bool HasLayers => LayerCount > 0;
 		public float TotalInfluence => _totalInfluence;
 
-		public void DrawPreview(Texture2D texture)
-		{
-			if (_preview == null || !HasLayers) return;
-			_preview.DrawPreviewTexture(this, texture);
-		}
-
-		public bool ContainsModule(FastNoisePipelineModule module)
+		public bool ContainsModule(FastNoiseModule module)
 		{
 			if (!HasLayers) return false;
 
-			foreach (var layer in layers)
+			foreach (var layer in _layers)
 			{
 				if (layer == null) continue;
 				if (layer.ContainsModule(module)) return true;
@@ -39,7 +31,7 @@ namespace Obsidize.FastNoise
 		{
 			if (!HasLayers) return;
 
-			foreach (var layer in layers)
+			foreach (var layer in _layers)
 			{
 				layer?.SetSeed(seed);
 			}
@@ -50,33 +42,40 @@ namespace Obsidize.FastNoise
 
 			float result = 0f;
 
-			foreach (var layer in layers)
+			foreach (var layer in _layers)
 			{
 				result += layer.GetInfluenceNoise(TotalInfluence, x, y);
 			}
 
-			return result / layers.Length;
+			return result / _layers.Length;
 		}
 
 		public override float GetNoise(float x, float y, float z)
 		{
 			float result = 0f;
 
-			foreach (var layer in layers)
+			foreach (var layer in _layers)
 			{
 				result += layer.GetInfluenceNoise(TotalInfluence, x, y, z);
 			}
 
-			return result / layers.Length;
+			return result / _layers.Length;
+		}
+
+		public override void DrawPreview(Texture2D texture)
+		{
+			if (HasLayers) base.DrawPreview(texture);
 		}
 
 		private void OnValidate()
 		{
+			Validate();
+
 			if (!HasLayers) return;
 
 			var influence = 0f;
 
-			foreach (var layer in layers)
+			foreach (var layer in _layers)
 			{
 				if (layer == null) continue;
 				layer.Validate(this);

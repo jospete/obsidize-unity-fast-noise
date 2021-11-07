@@ -5,7 +5,7 @@ namespace Obsidize.FastNoise
 	[System.Serializable]
 	public class FastNoisePipelineEntry
 	{
-		public FastNoisePipelineModule target;
+		public FastNoiseModule target;
 		public float influence = 1f;
 
 		public void SetSeed(int seed)
@@ -25,7 +25,7 @@ namespace Obsidize.FastNoise
 			return target.GetNoise(x, y, z) * (influence / maxInfluence);
 		}
 
-		public bool ContainsModule(FastNoisePipelineModule module)
+		public bool ContainsModule(FastNoiseModule module)
 		{
 			if (target == null) return false;
 			if (target == module) return true;

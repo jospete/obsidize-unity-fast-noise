@@ -3,17 +3,15 @@ using UnityEngine;
 namespace Obsidize.FastNoise
 {
 
-	[CreateAssetMenu(menuName = "Fast Noise/Module", fileName = "FastNoiseModule")]
-	public class FastNoisePreset : FastNoisePipelineModule
+	[CreateAssetMenu(menuName = "Fast Noise/Modules/Preset", fileName = "FastNoisePreset")]
+	public class FastNoisePreset : FastNoiseModule
 	{
 
-		protected readonly FastNoiseLite noise = new FastNoiseLite();
-
-		[SerializeField] private FastNoisePreviewOptions _preview = new FastNoisePreviewOptions();
 		[SerializeField] private FastNoiseOptions _options = new FastNoiseOptions();
 
-		public FastNoisePreviewOptions Preview => _preview;
 		public FastNoiseOptions Options => _options;
+
+		protected readonly FastNoiseLite noise = new FastNoiseLite();
 
 		private void Awake()
 		{
@@ -22,8 +20,8 @@ namespace Obsidize.FastNoise
 
 		private void OnValidate()
 		{
-			if (Preview != null) Preview.Validate();
-			if (Options != null) Options.Validate();
+			Validate();
+			Options?.Validate();
 		}
 
 		public void SyncOptions()
@@ -47,12 +45,12 @@ namespace Obsidize.FastNoise
 			return noise.At(x, y, z, Options.UseDomainWarp);
 		}
 
-		public void DrawPreview(Texture2D texture)
+		public override void DrawPreview(Texture2D texture)
 		{
-			if (noise == null || Preview == null) return;
+			if (noise == null) return;
 
 			SyncOptions();
-			Preview.DrawPreviewTexture(this, texture);
+			base.DrawPreview(texture);
 		}
 	}
 }
