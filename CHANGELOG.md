@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.0
+
+- Further unify base classes for ease of extension
+- Add new modules: FastNoiseSuppressor, FastNoiseAmplifier
+
 ## 1.0.6
 
 - Add utility methods to FastNoisePipelineModule for autofilling from Vector*** constructs

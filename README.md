@@ -3,6 +3,16 @@
 This is a port of the [Auburn/FastNoise](https://github.com/Auburn/FastNoiseLite/tree/master/CSharp)
 C# implementation that adds tools for generating procedural noise configuration assets.
 
+## Installation
+
+This git repo is directly installable via the unity package manager.
+Simply paste the repo url into the package manager add menu and unity will do the rest.
+
+## Usage
+
+After installation, you will see a new option in the right-click / Create menu named "Fast Noise".
+Use this menu to create your modules and pipelines as needed (See sample assets for ideas).
+
 ## Core Concepts
 
 This module contains two core asset concepts:
@@ -19,11 +29,12 @@ the noise output that each configuration or pipeline will make.
 
 Each module and pipeline asset will have a set of "preview" options to change the visualization state.
 
-## Samples
-
-Import the Presets sample for useful starting point assets.
-
 ## Customization
 
 If you need to adjust how noise values are obtained from a module, 
-make a custom class that extends ```FastNoisePreset``` and override the ```GetNoise(x, y)``` / ```GetNoise(x, y, z)``` methods.
+make a custom class that extends ```FastNoisPreset``` and override the ```GetNoise(x, y)``` / ```GetNoise(x, y, z)``` methods.
+
+If you want to make a custom value transformation module, 
+extend the ```FastNoisePipe``` class and override the ```TransformNoise(v)``` method.
+
+(See ```FastNoiseSuppressor``` / ```FastNoiseAmplifier``` for example code)
