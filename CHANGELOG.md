@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.1
+
+- Adjust default asset values
+- Update documentation
+
 ## 1.1.0
 
 - Further unify base classes for ease of extension
