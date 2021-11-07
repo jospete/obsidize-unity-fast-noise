@@ -31,10 +31,12 @@ Each module and pipeline asset will have a set of "preview" options to change th
 
 ## Customization
 
-If you need to adjust how noise values are obtained from a module, 
+To adjust how noise values are obtained from a module, 
 make a custom class that extends ```FastNoisPreset``` and override the ```GetNoise(x, y)``` / ```GetNoise(x, y, z)``` methods.
 
-If you want to make a custom value transformation module, 
+To make a custom value transformation module, 
 extend the ```FastNoisePipe``` class and override the ```TransformNoise(v)``` method.
 
 (See ```FastNoiseSuppressor``` / ```FastNoiseAmplifier``` for example code)
+
+To make a custom pipeline aggregator, extend the ```FastNoisePipeline``` class

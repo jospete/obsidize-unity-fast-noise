@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.0
+
+- Refactor Pipeline implementation to allow for generalized sub-classes
+- Add pipeline types: Additive, Influence (Previously default Pipeline implementation)
+- Add module type: Inverter
+
 ## 1.1.1
 
 - Adjust default asset values
