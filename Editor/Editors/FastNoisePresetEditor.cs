@@ -7,13 +7,13 @@ namespace Obsidize.FastNoise.EditorTools
 	public class FastNoisePresetEditor : FastNoiseModuleEditorBase
 	{
 
-		private FastNoisePreset _config;
+		private FastNoisePreset _module;
 
-		public override FastNoiseModule Module => _config;
+		public override FastNoiseModule Module => _module;
 
 		public override void OnInspectorGUI()
 		{
-			_config = target as FastNoisePreset;
+			_module = target as FastNoisePreset;
 			base.OnInspectorGUI();
 		}
 	}

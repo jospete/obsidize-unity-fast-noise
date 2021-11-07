@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d442d7c02e5d3014a88c30aa29b03164, type: 3}
-  m_Name: PipelineC
+  m_Script: {fileID: 11500000, guid: 7491a47a3394c2b4f8ff22231a8412d9, type: 3}
+  m_Name: PipelineSample_Additive
   m_EditorClassIdentifier: 
   _preview:
     seed: 1337
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
+    offset: {x: 11, y: 274}
     _density: 2
     _zoom: 0.5
-  _layers: []
-  _layerInfluences: []
-  _totalInfluence: 0
+  _layers:
+  - {fileID: 11400000, guid: 02208631bebb2084f926f54bef8e9ffe, type: 2}
+  - {fileID: 11400000, guid: b61b38b8aca4ebe41891e28b783a3316, type: 2}
