@@ -10,14 +10,16 @@ namespace Obsidize.FastNoise
 	{
 
 		[SerializeField] [MinMax(0f, 1f)] private MinMaxRange _trim;
-		[SerializeField] [Range(0f, 100f)] private float _amplifierValue;
+		[SerializeField] [Range(0f, 1f)] private float _upperBound = 1f;
+		[SerializeField] [Range(0f, 1f)] private float _growth = 1f;
 
 		public MinMaxRange Trim => _trim;
-		public float AmplifierValue => _amplifierValue;
+		public float UpperBound => _upperBound;
+		public float Growth => _growth;
 
 		public override float TransformNoise(float input)
 		{
-			return _trim.Contains(input) ? (input * AmplifierValue) : input;
+			return _trim.Contains(input) ? Mathf.Lerp(input, UpperBound, Growth) : input;
 		}
 	}
 }

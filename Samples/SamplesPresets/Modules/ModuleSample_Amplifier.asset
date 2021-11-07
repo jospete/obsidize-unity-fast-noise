@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fe665f106eb914ab839a19d6714f7b, type: 3}
-  m_Name: ModuleSample_Suppressor
+  m_Script: {fileID: 11500000, guid: 6deb8e79c005eca4995cd0a5645f2569, type: 3}
+  m_Name: ModuleSample_Amplifier
   m_EditorClassIdentifier: 
   _preview:
     seed: 1337
@@ -19,9 +19,9 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     _density: 2
     _zoom: 0.5
-  _inputSource: {fileID: 11400000, guid: f5713b6de3df03e469b77152df21544f, type: 2}
+  _inputSource: {fileID: 11400000, guid: 02208631bebb2084f926f54bef8e9ffe, type: 2}
   _trim:
-    _min: 0.388661
-    _max: 0.632801
-  _lowerBound: 0
-  _decay: 1
+    _min: 0.1
+    _max: 1
+  _upperBound: 1
+  _growth: 1

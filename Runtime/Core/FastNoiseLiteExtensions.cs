@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Obsidize.FastNoise
 {
 	public static class FastNoiseLiteExtensions
@@ -5,7 +7,7 @@ namespace Obsidize.FastNoise
 
 		// FastNoiseLite returns in range [-1,1]
 		// so we scale the value to be in range [0,1] here for lerp / height map calls.
-		private static float ScaleNoiseValue(float v) => (v + 1f) / 2f;
+		private static float ScaleNoiseValue(float v) => Mathf.Clamp01((v + 1f) / 2f);
 
 		public static float GetLerpNoise(this FastNoiseLite noise, float x, float y)
 		{
