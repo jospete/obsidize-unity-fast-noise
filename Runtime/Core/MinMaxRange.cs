@@ -37,5 +37,10 @@ namespace Obsidize.FastNoise
 		{
 			return Min <= value && value <= Max;
 		}
+
+		public static MinMaxRange DefaultLerpRange()
+		{
+			return new MinMaxRange(0f, 1f);
+		}
 	}
 }
