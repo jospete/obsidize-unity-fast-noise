@@ -1,12 +1,12 @@
 # Obsidize Fast Noise
 
 This is a port of the [Auburn/FastNoise](https://github.com/Auburn/FastNoiseLite/tree/master/CSharp)
-C# implementation that adds tools for generating procedural noise configuration assets.
+C# implementation that adds tools for generating procedural noise configuration assets in Unity.
 
 ## Installation
 
 This git repo is directly installable via the unity package manager.
-Simply paste the repo url into the package manager add menu and unity will do the rest.
+Simply paste the repo url into the package manager "add" menu and unity will do the rest.
 
 ## Usage
 
