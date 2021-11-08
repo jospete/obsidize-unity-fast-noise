@@ -19,4 +19,5 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     _density: 2
     _zoom: 0.5
-  _layers: []
+  _layers:
+  - {fileID: 11400000, guid: c38d68bbbc6a25a448abfa5475c393b1, type: 2}

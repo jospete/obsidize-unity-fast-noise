@@ -65,7 +65,11 @@ namespace Obsidize.FastNoise
 
 			var targetAspect = PreviewAspect;
 
-			if (texture != null && texture.height == targetAspect)
+			if (
+				texture != null
+				&& texture.width == targetAspect
+				&& texture.height == targetAspect
+			)
 			{
 				return true;
 			}
@@ -74,21 +78,23 @@ namespace Obsidize.FastNoise
 			return false;
 		}
 
-		public void DrawPreviewTexture(FastNoiseModule noise, Texture2D texture)
+		public bool DrawPreviewTexture(IFastNoiseContext noise, Texture2D texture)
 		{
-			if (noise == null || texture == null) return;
+			if (noise == null || texture == null) return false;
 
 			noise.SetSeed(seed);
 
 			var colors = GetPreviewTextureColors(noise, texture.width, texture.height);
 
-			if (colors == null) return;
+			if (colors == null) return false;
 
 			texture.SetPixels32(colors, 0);
 			texture.Apply();
+
+			return true;
 		}
 
-		protected Color32[] GetPreviewTextureColors(FastNoiseModule noise, int width, int height)
+		protected Color32[] GetPreviewTextureColors(IFastNoiseContext noise, int width, int height)
 		{
 
 			if (noise == null) return null;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Obsidize.FastNoise
 {
-	public abstract class FastNoisePipeline : FastNoiseModule
+	public abstract class FastNoisePipeline : FastNoiseModule, IFastNoiseAggregatorContextOperator
 	{
 
 		public static bool IsPipeline(FastNoiseModule module)
@@ -16,30 +16,40 @@ namespace Obsidize.FastNoise
 			return IsPipeline(container) && (container as FastNoisePipeline).ContainsModule(target);
 		}
 
-
 		[SerializeField] private List<FastNoiseModule> _layers = new List<FastNoiseModule>();
-
-		private readonly FastNoisePipelineLayerContext _cachedLayerContext = new FastNoisePipelineLayerContext();
 
 		public int LayerCount => _layers.Count;
 		public bool HasLayers => LayerCount > 0;
 
-		protected abstract float ApplyLayerNoise(float currentValue, FastNoisePipelineLayerContext context, float x, float y);
-		protected abstract float ApplyLayerNoise(float currentValue, FastNoisePipelineLayerContext context, float x, float y, float z);
+		protected abstract IFastNoiseAggregatorContextSource CreateAggregatorSource(FastNoiseModule module, int index);
 
-		protected virtual float NormalizeLayeredNoise2D(float currentValue)
+		public virtual float NormalizeAggregatedNoise2D(float value)
 		{
-			return currentValue;
+			return value;
 		}
 
-		protected virtual float NormalizeLayeredNoise3D(float currentValue)
+		public virtual float NormalizeAggregatedNoise3D(float value)
 		{
-			return currentValue;
+			return value;
 		}
 
-		private void OnValidate()
+		protected override void OnValidate()
 		{
-			Validate();
+			base.OnValidate();
+			if (HasLayers) _layers.RemoveAll(HasCircularReferenceToWithDebug);
+		}
+
+		public override FastNoiseContext CreateContext()
+		{
+			var sourceCount = LayerCount;
+			var sources = new IFastNoiseAggregatorContextSource[sourceCount];
+
+			for (int i = 0; i < sourceCount; i++)
+			{
+				sources[i] = CreateAggregatorSource(_layers[i], i);
+			}
+
+			return new FastNoiseAggregatorContext(sources, this);
 		}
 
 		public FastNoiseModule GetLayerAt(int index)
@@ -79,62 +89,6 @@ namespace Obsidize.FastNoise
 			}
 
 			return false;
-		}
-
-		public override void DrawPreview(Texture2D texture)
-		{
-			if (HasLayers) base.DrawPreview(texture);
-		}
-
-		public override void Validate()
-		{
-			base.Validate();
-
-			if (!HasLayers) return;
-
-			_layers.RemoveAll(HasCircularReferenceToWithDebug);
-		}
-
-		public override void SetSeed(int seed)
-		{
-			if (!HasLayers) return;
-
-			foreach (var layer in _layers)
-			{
-				layer?.SetSeed(seed);
-			}
-		}
-
-		public override float GetNoise(float x, float y)
-		{
-
-			float result = 0f;
-
-			for (int i = 0; i < LayerCount; i++)
-			{
-				_cachedLayerContext.layer = GetLayerAt(i);
-				_cachedLayerContext.layerIndex = i;
-				_cachedLayerContext.layerNoise = _cachedLayerContext.layer?.GetNoise(x, y) ?? 0f;
-				result = ApplyLayerNoise(result, _cachedLayerContext, x, y);
-			}
-
-			return Mathf.Clamp01(NormalizeLayeredNoise2D(result));
-		}
-
-		public override float GetNoise(float x, float y, float z)
-		{
-
-			float result = 0f;
-
-			for (int i = 0; i < LayerCount; i++)
-			{
-				_cachedLayerContext.layer = GetLayerAt(i);
-				_cachedLayerContext.layerIndex = i;
-				_cachedLayerContext.layerNoise = _cachedLayerContext.layer?.GetNoise(x, y, z) ?? 0f;
-				result = ApplyLayerNoise(result, _cachedLayerContext, x, y, z);
-			}
-
-			return Mathf.Clamp01(NormalizeLayeredNoise3D(result));
 		}
 	}
 }

@@ -8,15 +8,38 @@ namespace Obsidize.FastNoise
 	public class FastNoiseInfluencePipeline : FastNoisePipeline
 	{
 
+		public class AggregatorSource : IFastNoiseAggregatorContextSource
+		{
+
+			private readonly IFastNoiseContext _context;
+			private readonly float _influenceWeight;
+
+			public AggregatorSource(FastNoiseModule module, float influenceWeight)
+			{
+				_context = module.CreateContext();
+				_influenceWeight = influenceWeight;
+			}
+
+			public float CombineNoise(float accumulator, float x, float y)
+			{
+				return accumulator + (_context.GetNoise(x, y) * _influenceWeight);
+			}
+
+			public float CombineNoise(float accumulator, float x, float y, float z)
+			{
+				return accumulator + (_context.GetNoise(x, y, z) * _influenceWeight);
+			}
+
+			public void SetSeed(int seed)
+			{
+				_context.SetSeed(seed);
+			}
+		}
+
 		[HideInInspector] [SerializeField] private float[] _layerInfluences;
 		[HideInInspector] [SerializeField] private float _totalInfluence;
 
 		public float TotalInfluence => _totalInfluence;
-
-		private void OnValidate()
-		{
-			Validate();
-		}
 
 		public float GetLayerInfluence(int layerIndex)
 		{
@@ -50,29 +73,24 @@ namespace Obsidize.FastNoise
 			return GetLayerInfluence(index) / TotalInfluence;
 		}
 
-		protected override float ApplyLayerNoise(float currentValue, FastNoisePipelineLayerContext context, float x, float y)
+		protected override IFastNoiseAggregatorContextSource CreateAggregatorSource(FastNoiseModule module, int index)
 		{
-			return currentValue + (context.layerNoise * GetNormalizedInfluence(context.layerIndex));
+			return new AggregatorSource(module, GetNormalizedInfluence(index));
 		}
 
-		protected override float ApplyLayerNoise(float currentValue, FastNoisePipelineLayerContext context, float x, float y, float z)
-		{
-			return currentValue + (context.layerNoise * GetNormalizedInfluence(context.layerIndex));
-		}
-
-		protected override float NormalizeLayeredNoise2D(float currentValue)
+		public override float NormalizeAggregatedNoise2D(float currentValue)
 		{
 			return currentValue / LayerCount;
 		}
 
-		protected override float NormalizeLayeredNoise3D(float currentValue)
+		public override float NormalizeAggregatedNoise3D(float currentValue)
 		{
 			return currentValue / LayerCount;
 		}
 
-		public override void Validate()
+		protected override void OnValidate()
 		{
-			base.Validate();
+			base.OnValidate();
 			if (!HasLayers) return;
 
 			if (_layerInfluences == null || _layerInfluences.Length != LayerCount)

@@ -16,7 +16,7 @@ MonoBehaviour:
     seed: 1337
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: -332, y: 526}
+    offset: {x: -338, y: 574}
     _density: 2
     _zoom: 0.5
   _inputSource: {fileID: 11400000, guid: fa3abee4f33538746bc51722f609fab1, type: 2}

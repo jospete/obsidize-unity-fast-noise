@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: PipelineSample_Influence
   m_EditorClassIdentifier: 
   _preview:
-    seed: 1337
+    seed: 1332
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: -137, y: 13}
-    _density: 1
-    _zoom: 0.19999997
+    offset: {x: -232, y: 179}
+    _density: 2
+    _zoom: 0.5
   _layers:
   - {fileID: 11400000, guid: 57820a0dc528cd6438856d31c2cded9f, type: 2}
   - {fileID: 11400000, guid: b61b38b8aca4ebe41891e28b783a3316, type: 2}
   _layerInfluences:
   - 1
-  - 3.66
-  _totalInfluence: 4.66
+  - 12
+  _totalInfluence: 13

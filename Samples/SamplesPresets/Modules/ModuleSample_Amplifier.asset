@@ -21,7 +21,7 @@ MonoBehaviour:
     _zoom: 0.5
   _inputSource: {fileID: 11400000, guid: 02208631bebb2084f926f54bef8e9ffe, type: 2}
   _trim:
-    _min: 0.1
+    _min: 0.18832621
     _max: 1
   _upperBound: 1
   _growth: 1

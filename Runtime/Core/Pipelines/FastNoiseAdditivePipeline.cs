@@ -7,19 +7,41 @@ namespace Obsidize.FastNoise
 	public class FastNoiseAdditivePipeline : FastNoisePipeline
 	{
 
-		private void OnValidate()
+		public class AggregatorSource : IFastNoiseAggregatorContextSource
 		{
-			Validate();
+
+			private readonly IFastNoiseContext _context;
+
+			public AggregatorSource(FastNoiseModule module)
+			{
+				_context = module.CreateContext();
+			}
+
+			public float CombineNoise(float accumulator, float x, float y)
+			{
+				return accumulator + _context.GetNoise(x, y);
+			}
+
+			public float CombineNoise(float accumulator, float x, float y, float z)
+			{
+				return accumulator + _context.GetNoise(x, y, z);
+			}
+
+			public void SetSeed(int seed)
+			{
+				_context.SetSeed(seed);
+			}
 		}
 
-		protected override float ApplyLayerNoise(float currentValue, FastNoisePipelineLayerContext context, float x, float y)
+
+		protected override void OnValidate()
 		{
-			return currentValue + context.layerNoise;
+			base.OnValidate();
 		}
 
-		protected override float ApplyLayerNoise(float currentValue, FastNoisePipelineLayerContext context, float x, float y, float z)
+		protected override IFastNoiseAggregatorContextSource CreateAggregatorSource(FastNoiseModule module, int index)
 		{
-			return currentValue + context.layerNoise;
+			return new AggregatorSource(module);
 		}
 	}
 }
