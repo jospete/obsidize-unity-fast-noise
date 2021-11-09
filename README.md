@@ -13,6 +13,28 @@ Simply paste the repo url into the package manager "add" menu and unity will do 
 After installation, you will see a new option in the right-click / Create menu named "Fast Noise".
 Use this menu to create your modules and pipelines as needed (See sample assets for ideas).
 
+Once you create your modules / pipelines, get a reference to them in your script and use the ```CreateContext()```
+method to start generating noise.
+
+```csharp
+using UnityEngine;
+using Obsidize.FastNoise;
+
+public class ExampleScript : MonoBehaviour
+{
+	
+	public FastNoisePreset noisePreset;
+	private FastNoiseContext noise;
+	
+	private void Start()
+	{
+		noise = noisePreset.CreateContext();
+		noise.SetSeed(12345);
+		Debug.Log("some random point: " + noise.GetNoise(55f, 123.4f));
+	}
+}
+```
+
 ## Core Concepts
 
 This module contains two core asset concepts:
