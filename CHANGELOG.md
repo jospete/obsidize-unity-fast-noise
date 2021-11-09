@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.2
+
+- Fix circular dependency checking logic that did not account for some cases, which would end up crashing the unity editor
+
 ## 2.0.1
 
 - Fix issue where FastNoisePipeline was producing an adaptive context for playmode (adaptive context is only meant for editor mode)
