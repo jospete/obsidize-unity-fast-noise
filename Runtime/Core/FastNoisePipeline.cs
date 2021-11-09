@@ -29,6 +29,16 @@ namespace Obsidize.FastNoise
 			return value;
 		}
 
+		public FastNoiseModule GetModuleAt(int index)
+		{
+			return _modules[index];
+		}
+
+		public void CheckForLayerDesync()
+		{
+			if (LayersAreDesynced) NormalizeLayers();
+		}
+
 		public override FastNoiseContext CreateContext()
 		{
 
@@ -65,11 +75,6 @@ namespace Obsidize.FastNoise
 			NormalizeLayers();
 		}
 
-		public void CheckForLayerDesync()
-		{
-			if (LayersAreDesynced) NormalizeLayers();
-		}
-
 		public void NormalizeLayers()
 		{
 
@@ -89,11 +94,6 @@ namespace Obsidize.FastNoise
 			{
 				EnsureLayerAt(i).Initialize(_modules[i], i);
 			}
-		}
-
-		public FastNoiseModule GetModuleAt(int index)
-		{
-			return _modules[index];
 		}
 	}
 }

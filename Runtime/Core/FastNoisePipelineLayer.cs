@@ -11,14 +11,14 @@ namespace Obsidize.FastNoise
 		public IFastNoiseContext Context => _context;
 		public int Index => _index;
 
+		public abstract float CombineNoise(float accumulator, float contextNoise, float x, float y);
+		public abstract float CombineNoise(float accumulator, float contextNoise, float x, float y, float z);
+
 		public void Initialize(FastNoiseModule module, int index)
 		{
 			_module = module;
 			_index = index;
 			_context = module != null ? module.CreateContext() : null;
 		}
-
-		public abstract float CombineNoise(float accumulator, float contextNoise, float x, float y);
-		public abstract float CombineNoise(float accumulator, float contextNoise, float x, float y, float z);
 	}
 }
