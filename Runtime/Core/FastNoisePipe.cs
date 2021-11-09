@@ -8,6 +8,7 @@ namespace Obsidize.FastNoise
 		[SerializeField] private FastNoiseModule _inputSource;
 
 		public FastNoiseModule InputSource => _inputSource;
+		public bool HasInputSource => _inputSource != null;
 
 		public virtual float TransformNoise(float noiseValue)
 		{
@@ -34,6 +35,16 @@ namespace Obsidize.FastNoise
 			var result = _inputSource != null ? _inputSource.CreateContext() : null;
 			if (result != null) result = result.WithNoiseTransformation(this);
 			return result;
+		}
+
+		protected override void OnValidate()
+		{
+			base.OnValidate();
+
+			if (this.HasCircularReferenceToWithDebug(_inputSource))
+			{
+				_inputSource = null;
+			}
 		}
 	}
 }

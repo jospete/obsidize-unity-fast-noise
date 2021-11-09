@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d442d7c02e5d3014a88c30aa29b03164, type: 3}
-  m_Name: PipelineC
+  m_Script: {fileID: 11500000, guid: 7491a47a3394c2b4f8ff22231a8412d9, type: 3}
+  m_Name: PipelineD
   m_EditorClassIdentifier: 
   _preview:
     seed: 1337
@@ -19,6 +19,5 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     _density: 2
     _zoom: 0.5
-  _layers: []
-  _layerInfluences: []
-  _totalInfluence: 0
+  _modules:
+  - {fileID: 11400000, guid: 827e687c84b824045bfb6cb671a9d081, type: 2}

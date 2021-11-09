@@ -10,25 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d442d7c02e5d3014a88c30aa29b03164, type: 3}
-  m_Name: PipelineSample_Influence
+  m_Name: PipelineB
   m_EditorClassIdentifier: 
   _preview:
     seed: 1337
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: -35, y: 69}
+    offset: {x: 0, y: 0}
     _density: 2
     _zoom: 0.5
   _modules:
-  - {fileID: 11400000, guid: d77d7fee6a78acf4ba7b14f176d04807, type: 2}
-  - {fileID: 11400000, guid: 6eca444ad49deaa459723e62201192ec, type: 2}
-  - {fileID: 11400000, guid: 57820a0dc528cd6438856d31c2cded9f, type: 2}
+  - {fileID: 11400000, guid: 5057b7d0c730f8644aeca27c1b3ed372, type: 2}
   _layerInfluences:
-  - 1.56
-  - 2.6
-  - 3.09
+  - 0
   _layerInfluenceRatios:
-  - 0.21517241
-  - 0.35862067
-  - 0.4262069
-  _totalInfluence: 7.25
+  - NaN
+  _totalInfluence: 0

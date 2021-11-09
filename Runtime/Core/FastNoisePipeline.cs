@@ -9,6 +9,7 @@ namespace Obsidize.FastNoise
 		[SerializeField] private List<FastNoiseModule> _modules;
 		private FastNoisePipelineLayer[] _layers;
 
+		public IReadOnlyCollection<FastNoiseModule> Modules => _modules;
 		public int ModuleCount => _modules != null ? _modules.Count : 0;
 		public bool HasModules => ModuleCount > 0;
 		public int LayerCount => _layers != null ? _layers.Length : 0;
@@ -59,7 +60,7 @@ namespace Obsidize.FastNoise
 			if (!HasModules) return;
 
 			if (_modules == null) _modules = new List<FastNoiseModule>();
-			_modules.RemoveAll(HasCircularReferenceToWithDebug);
+			_modules.RemoveAll(this.HasCircularReferenceToWithDebug);
 
 			NormalizeLayers();
 		}
@@ -93,50 +94,6 @@ namespace Obsidize.FastNoise
 		public FastNoiseModule GetModuleAt(int index)
 		{
 			return _modules[index];
-		}
-
-		public bool HasCircularReferenceTo(FastNoiseModule module)
-		{
-			return IsPipelineDependency(module, this);
-		}
-
-		private bool HasCircularReferenceToWithDebug(FastNoiseModule module)
-		{
-
-			var isCircularRef = HasCircularReferenceTo(module);
-
-			if (isCircularRef)
-			{
-				Debug.LogWarning("Found circular reference from parent [" + this + "] to child [" + module + "]");
-			}
-
-			return isCircularRef;
-		}
-
-		public bool ContainsModule(FastNoiseModule module)
-		{
-
-			if (!HasModules) return false;
-			if (module == null) return false;
-
-			foreach (var mod in _modules)
-			{
-				if (mod == null) continue;
-				if (mod == module) return true;
-				if (IsPipelineDependency(mod, module)) return true;
-			}
-
-			return false;
-		}
-
-		public static bool IsPipeline(FastNoiseModule module)
-		{
-			return module != null && module is FastNoisePipeline;
-		}
-
-		public static bool IsPipelineDependency(FastNoiseModule container, FastNoiseModule target)
-		{
-			return IsPipeline(container) && (container as FastNoisePipeline).ContainsModule(target);
 		}
 	}
 }

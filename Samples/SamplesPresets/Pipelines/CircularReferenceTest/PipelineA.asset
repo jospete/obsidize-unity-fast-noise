@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d442d7c02e5d3014a88c30aa29b03164, type: 3}
-  m_Name: PipelineB
+  m_Name: PipelineA
   m_EditorClassIdentifier: 
   _preview:
     seed: 1337
@@ -19,8 +19,10 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     _density: 2
     _zoom: 0.5
-  _layers:
-  - {fileID: 11400000, guid: 5057b7d0c730f8644aeca27c1b3ed372, type: 2}
+  _modules:
+  - {fileID: 11400000, guid: 6ccb496a47691dd4386d42a5c3cfe907, type: 2}
   _layerInfluences:
   - 0
+  _layerInfluenceRatios:
+  - NaN
   _totalInfluence: 0

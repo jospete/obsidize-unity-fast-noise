@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6deb8e79c005eca4995cd0a5645f2569, type: 3}
+  m_Name: Amplifier
+  m_EditorClassIdentifier: 
+  _preview:
+    seed: 1337
+    lowColor: {r: 0, g: 0, b: 0, a: 1}
+    highColor: {r: 1, g: 1, b: 1, a: 1}
+    offset: {x: 0, y: 0}
+    _density: 2
+    _zoom: 0.5
+  _inputSource: {fileID: 11400000, guid: e97b5c12013bbf34db5a41693deced6f, type: 2}
+  _trim:
+    _min: 0
+    _max: 1
+  _upperBound: 1
+  _growth: 1

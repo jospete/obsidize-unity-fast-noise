@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7491a47a3394c2b4f8ff22231a8412d9, type: 3}
-  m_Name: PipelineD
+  m_Script: {fileID: 11500000, guid: c53883b2cf634984281cfa5beb1e497a, type: 3}
+  m_Name: Inverter
   m_EditorClassIdentifier: 
   _preview:
     seed: 1337
@@ -19,5 +19,4 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     _density: 2
     _zoom: 0.5
-  _layers:
-  - {fileID: 11400000, guid: c38d68bbbc6a25a448abfa5475c393b1, type: 2}
+  _inputSource: {fileID: 0}
