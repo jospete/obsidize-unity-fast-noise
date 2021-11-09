@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2.0.1
+
+- Fix issue where FastNoisePipeline was producing an adaptive context for playmode (adaptive context is only meant for editor mode)
+
+## 2.0.0
+
+- Overhaul core FastNoiseModule implementations to require context creation, so that multiple pipeline / module instances can run independently from the same assets
+- Documentation updates
+- Code cleanup
+
 ## 1.2.0
 
 - Refactor Pipeline implementation to allow for generalized sub-classes

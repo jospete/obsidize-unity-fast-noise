@@ -33,9 +33,11 @@ namespace Obsidize.FastNoise
 
 			NormalizeLayers();
 
+			// When not in play mode, use an adaptive context to be
+			// more lenient on editor changes.
 			return Application.isPlaying
-				? new AdaptiveFastNoiseAggregatorContext<FastNoisePipelineLayer>(this)
-				: new FastNoiseAggregatorContext<FastNoisePipelineLayer>(this);
+				? new FastNoiseAggregatorContext<FastNoisePipelineLayer>(this)
+				: new AdaptiveFastNoiseAggregatorContext<FastNoisePipelineLayer>(this);
 		}
 
 		private FastNoisePipelineLayer EnsureLayerAt(int index)
