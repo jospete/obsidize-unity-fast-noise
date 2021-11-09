@@ -16,13 +16,16 @@ MonoBehaviour:
     seed: 1332
     lowColor: {r: 0, g: 0, b: 0, a: 1}
     highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: -232, y: 179}
-    _density: 2
+    offset: {x: -1332, y: 1088}
+    _density: 3
     _zoom: 0.5
-  _layers:
-  - {fileID: 11400000, guid: 57820a0dc528cd6438856d31c2cded9f, type: 2}
+  _modules:
   - {fileID: 11400000, guid: b61b38b8aca4ebe41891e28b783a3316, type: 2}
+  - {fileID: 11400000, guid: d77d7fee6a78acf4ba7b14f176d04807, type: 2}
   _layerInfluences:
-  - 1
-  - 12
-  _totalInfluence: 13
+  - 1.27
+  - 3.04
+  _layerInfluenceRatios:
+  - 0.29466358
+  - 0.70533645
+  _totalInfluence: 4.31

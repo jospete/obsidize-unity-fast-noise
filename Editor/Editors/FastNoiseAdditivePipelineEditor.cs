@@ -3,7 +3,7 @@ using UnityEditor;
 namespace Obsidize.FastNoise.EditorTools
 {
 	[CustomEditor(typeof(FastNoiseAdditivePipeline))]
-	public class FastNoiseAdditivePipelineEditor : FastNoiseModuleEditorBase
+	public class FastNoiseAdditivePipelineEditor : FastNoisePipelineEditorBase
 	{
 
 		private FastNoiseAdditivePipeline _pipeline;

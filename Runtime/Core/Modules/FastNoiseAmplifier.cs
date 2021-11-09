@@ -19,7 +19,7 @@ namespace Obsidize.FastNoise
 
 		public override float TransformNoise(float input)
 		{
-			return _trim.Contains(input) ? Mathf.Lerp(input, UpperBound, Growth) : input;
+			return Trim.Contains(input) ? Mathf.Lerp(input, UpperBound, Growth) : input;
 		}
 	}
 }

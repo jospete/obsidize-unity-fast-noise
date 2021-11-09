@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Obsidize.FastNoise.EditorTools
 {
 	[CustomEditor(typeof(FastNoiseInfluencePipeline))]
-	public class FastNoiseInfluencePipelineEditor : FastNoiseModuleEditorBase
+	public class FastNoiseInfluencePipelineEditor : FastNoisePipelineEditorBase
 	{
 
 		private FastNoiseInfluencePipeline _pipeline;
@@ -12,19 +12,23 @@ namespace Obsidize.FastNoise.EditorTools
 
 		public override FastNoiseModule Module => _pipeline;
 
-		private void ShowLayerInfluenceEditor(int index)
+		private bool ShowLayerInfluenceEditor(int index)
 		{
 
-			var layer = _pipeline.GetLayerAt(index);
-			if (layer == null) return;
+			var layer = _pipeline.GetModuleAt(index);
+			if (layer == null) return false;
 
-			_pipeline.SetLayerInfluence(
+			var currentValue = _pipeline.GetLayerInfluence(index);
+
+			var updateValue = _pipeline.SetLayerInfluence(
 				index,
-				EditorGUILayout.FloatField(layer.name, _pipeline.GetLayerInfluence(index))
+				EditorGUILayout.FloatField(layer.name, currentValue)
 			);
+
+			return currentValue != updateValue;
 		}
 
-		private void ShowLayerInfluenceList()
+		private bool ShowLayerInfluenceList()
 		{
 
 			var previousWidth = EditorGUIUtility.labelWidth;
@@ -32,18 +36,24 @@ namespace Obsidize.FastNoise.EditorTools
 
 			EditorGUILayout.LabelField("Influence Weights", EditorStyles.boldLabel);
 
-			for (int i = 0; i < _pipeline.LayerCount; i++)
+			bool didUpdateAny = false;
+			bool didUpdateNext;
+
+			for (int i = 0; i < _pipeline.ModuleCount; i++)
 			{
-				ShowLayerInfluenceEditor(i);
+				didUpdateNext = ShowLayerInfluenceEditor(i);
+				didUpdateAny = didUpdateAny || didUpdateNext;
 			}
 
 			EditorGUIUtility.labelWidth = previousWidth;
+
+			return didUpdateAny;
 		}
 
 		public override void OnInspectorGUI()
 		{
 
-			_didUpdateProperties = DrawDefaultInspector();
+			_didUpdateProperties = DrawDefaultNoiseModuleInspector();
 			_pipeline = target as FastNoiseInfluencePipeline;
 
 			if (_pipeline == null)
@@ -53,7 +63,12 @@ namespace Obsidize.FastNoise.EditorTools
 
 			EditorGUILayout.Space();
 
-			ShowLayerInfluenceList();
+			if (ShowLayerInfluenceList())
+			{
+				_didUpdateProperties = true;
+				_pipeline.CalculateTotalInfluence();
+				EditorUtility.SetDirty(_pipeline);
+			}
 
 			EditorGUILayout.Space();
 			EditorGUILayout.Space();

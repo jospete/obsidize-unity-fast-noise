@@ -30,7 +30,12 @@ namespace Obsidize.FastNoise
 			IFastNoiseTransformationContextOperator transformationOperator
 		)
 		{
-			if (context == null || transformationOperator == null) return null;
+
+			if (context == null || transformationOperator == null)
+			{
+				return null;
+			}
+
 			return new FastNoiseTransformationContext(context, transformationOperator);
 		}
 	}

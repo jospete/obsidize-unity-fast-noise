@@ -8,38 +8,37 @@ namespace Obsidize.FastNoise
 	public class FastNoiseInfluencePipeline : FastNoisePipeline
 	{
 
-		public class AggregatorSource : IFastNoiseAggregatorContextSource
-		{
-
-			private readonly IFastNoiseContext _context;
-			private readonly float _influenceWeight;
-
-			public AggregatorSource(FastNoiseModule module, float influenceWeight)
-			{
-				_context = module.CreateContext();
-				_influenceWeight = influenceWeight;
-			}
-
-			public float CombineNoise(float accumulator, float x, float y)
-			{
-				return accumulator + (_context.GetNoise(x, y) * _influenceWeight);
-			}
-
-			public float CombineNoise(float accumulator, float x, float y, float z)
-			{
-				return accumulator + (_context.GetNoise(x, y, z) * _influenceWeight);
-			}
-
-			public void SetSeed(int seed)
-			{
-				_context.SetSeed(seed);
-			}
-		}
-
 		[HideInInspector] [SerializeField] private float[] _layerInfluences;
+		[HideInInspector] [SerializeField] private float[] _layerInfluenceRatios;
 		[HideInInspector] [SerializeField] private float _totalInfluence;
 
 		public float TotalInfluence => _totalInfluence;
+
+		protected override FastNoisePipelineLayer CreateLayer()
+		{
+			return new FastNoiseInfluencePipelineLayer(GetLayerInfluenceRatio);
+		}
+
+		public override float NormalizeCombinedNoise2D(float value)
+		{
+			return Mathf.Clamp01(value / ModuleCount);
+		}
+
+		public override float NormalizeCombinedNoise3D(float value)
+		{
+			return Mathf.Clamp01(value / ModuleCount);
+		}
+
+		protected override void OnValidate()
+		{
+			base.OnValidate();
+			if (HasModules) CalculateTotalInfluence();
+		}
+
+		public float GetLayerInfluenceRatio(int layerIndex)
+		{
+			return _layerInfluenceRatios[layerIndex];
+		}
 
 		public float GetLayerInfluence(int layerIndex)
 		{
@@ -56,49 +55,36 @@ namespace Obsidize.FastNoise
 
 		public float CalculateTotalInfluence()
 		{
+
+			var layerCount = ModuleCount;
+
+			if (_layerInfluences == null || _layerInfluences.Length != layerCount)
+			{
+				Array.Resize(ref _layerInfluences, layerCount);
+			}
+
+			if (_layerInfluenceRatios == null || _layerInfluenceRatios.Length != layerCount)
+			{
+				Array.Resize(ref _layerInfluenceRatios, layerCount);
+			}
+
 			var result = 0f;
 
-			for (int i = 0; i < LayerCount; i++)
+			for (int i = 0; i < layerCount; i++)
 			{
 				result += GetLayerInfluence(i);
 			}
 
 			_totalInfluence = result;
 
-			return _totalInfluence;
-		}
-
-		private float GetNormalizedInfluence(int index)
-		{
-			return GetLayerInfluence(index) / TotalInfluence;
-		}
-
-		protected override IFastNoiseAggregatorContextSource CreateAggregatorSource(FastNoiseModule module, int index)
-		{
-			return new AggregatorSource(module, GetNormalizedInfluence(index));
-		}
-
-		public override float NormalizeAggregatedNoise2D(float currentValue)
-		{
-			return currentValue / LayerCount;
-		}
-
-		public override float NormalizeAggregatedNoise3D(float currentValue)
-		{
-			return currentValue / LayerCount;
-		}
-
-		protected override void OnValidate()
-		{
-			base.OnValidate();
-			if (!HasLayers) return;
-
-			if (_layerInfluences == null || _layerInfluences.Length != LayerCount)
+			// Precalculate the influence ratios so we can
+			// avoid repetitive divisions during runtime.
+			for (int i = 0; i < layerCount; i++)
 			{
-				Array.Resize(ref _layerInfluences, LayerCount);
+				_layerInfluenceRatios[i] = _layerInfluences[i] / _totalInfluence;
 			}
 
-			CalculateTotalInfluence();
+			return _totalInfluence;
 		}
 	}
 }

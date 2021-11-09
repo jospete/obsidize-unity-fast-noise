@@ -26,7 +26,7 @@ namespace Obsidize.FastNoise
 
 		public override FastNoiseContext CreateContext()
 		{
-			var result = InputSource?.CreateContext() ?? null;
+			var result = _inputSource != null ? _inputSource.CreateContext() : null;
 			if (result != null) result = result.WithNoiseTransformation(this);
 			return result;
 		}

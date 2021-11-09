@@ -20,17 +20,17 @@ namespace Obsidize.FastNoise
 
 		public override void SetSeed(int seed)
 		{
-			_source.SetSeed(seed);
+			Source.SetSeed(seed);
 		}
 
 		public override float GetNoise(float x, float y)
 		{
-			return _transformationOperator.TransformNoise2D(_source.GetNoise(x, y), x, y);
+			return TransformationOperator.TransformNoise2D(Source.GetNoise(x, y), x, y);
 		}
 
 		public override float GetNoise(float x, float y, float z)
 		{
-			return _transformationOperator.TransformNoise3D(_source.GetNoise(x, y, z), x, y, z);
+			return TransformationOperator.TransformNoise3D(Source.GetNoise(x, y, z), x, y, z);
 		}
 	}
 }
