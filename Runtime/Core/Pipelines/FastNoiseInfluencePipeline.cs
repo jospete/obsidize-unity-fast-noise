@@ -21,12 +21,12 @@ namespace Obsidize.FastNoise
 
 		public override float NormalizeCombinedNoise2D(float value)
 		{
-			return Mathf.Clamp01(value / ModuleCount);
+			return Mathf.Clamp01(value);
 		}
 
 		public override float NormalizeCombinedNoise3D(float value)
 		{
-			return Mathf.Clamp01(value / ModuleCount);
+			return Mathf.Clamp01(value);
 		}
 
 		protected override void OnValidate()

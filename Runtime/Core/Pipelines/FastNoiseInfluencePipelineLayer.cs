@@ -5,7 +5,7 @@ namespace Obsidize.FastNoise
 	public class FastNoiseInfluencePipelineLayer : FastNoisePipelineLayer
 	{
 
-		private Func<int, float> _getInfluence;
+		private readonly Func<int, float> _getInfluence;
 		public float InfluenceRatio => _getInfluence(Index);
 
 		public FastNoiseInfluencePipelineLayer(Func<int, float> getInfluence)

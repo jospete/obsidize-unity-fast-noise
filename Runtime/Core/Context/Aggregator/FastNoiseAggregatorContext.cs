@@ -19,17 +19,27 @@ namespace Obsidize.FastNoise
 			_aggregatorOperator = aggregatorOperator;
 		}
 
+		protected virtual void SetSourceSeed(T source, int seed)
+		{
+			source.Context.SetSeed(seed);
+		}
+
+		protected virtual float CombineSourceNoise(T source, float accumulator, float x, float y)
+		{
+			return source.CombineNoise(accumulator, source.Context.GetNoise(x, y), x, y);
+		}
+
+		protected virtual float CombineSourceNoise(T source, float accumulator, float x, float y, float z)
+		{
+			return source.CombineNoise(accumulator, source.Context.GetNoise(x, y, z), x, y, z);
+		}
+
 		public override void SetSeed(int seed)
 		{
-			if (!HasSources)
-			{
-				return;
-			}
 
 			foreach (var source in AggregatorOperator.Sources)
 			{
-				if (source == null || source.Context == null) continue;
-				source.Context.SetSeed(seed);
+				SetSourceSeed(source, seed);
 			}
 		}
 
@@ -38,18 +48,9 @@ namespace Obsidize.FastNoise
 
 			float result = 0f;
 
-			if (!HasSources)
-			{
-				return result;
-			}
-
-			float contextNoise;
-
 			foreach (var source in AggregatorOperator.Sources)
 			{
-				if (source == null || source.Context == null) continue;
-				contextNoise = source.Context.GetNoise(x, y);
-				result = source.CombineNoise(result, contextNoise, x, y);
+				result = CombineSourceNoise(source, result, x, y);
 			}
 
 			return AggregatorOperator.NormalizeCombinedNoise2D(result);
@@ -60,18 +61,9 @@ namespace Obsidize.FastNoise
 
 			float result = 0f;
 
-			if (!HasSources)
-			{
-				return result;
-			}
-
-			float contextNoise;
-
 			foreach (var source in AggregatorOperator.Sources)
 			{
-				if (source == null || source.Context == null) continue;
-				contextNoise = source.Context.GetNoise(x, y);
-				result = source.CombineNoise(result, contextNoise, x, y, z);
+				result = CombineSourceNoise(source, result, x, y, z);
 			}
 
 			return AggregatorOperator.NormalizeCombinedNoise3D(result);

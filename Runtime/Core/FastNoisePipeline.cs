@@ -30,8 +30,12 @@ namespace Obsidize.FastNoise
 
 		public override FastNoiseContext CreateContext()
 		{
+
 			NormalizeLayers();
-			return new FastNoiseAggregatorContext<FastNoisePipelineLayer>(this);
+
+			return Application.isPlaying
+				? new AdaptiveFastNoiseAggregatorContext<FastNoisePipelineLayer>(this)
+				: new FastNoiseAggregatorContext<FastNoisePipelineLayer>(this);
 		}
 
 		private FastNoisePipelineLayer EnsureLayerAt(int index)
