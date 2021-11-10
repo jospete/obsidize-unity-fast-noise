@@ -15,14 +15,17 @@ namespace Obsidize.FastNoise.EditorTools
 
 		public override void UpdatePreviewTexture()
 		{
-			if (_cachedContext == null) RegenerateContext();
 			FastNoisePreview?.DrawPreviewTexture(_cachedContext, FastNoisePreviewTexture);
 		}
 
 		public virtual bool DrawDefaultNoiseModuleInspector()
 		{
+
+			if (_cachedContext == null) RegenerateContext();
+
 			bool didUpdate = DrawDefaultInspector();
 			if (didUpdate) RegenerateContext();
+
 			return didUpdate;
 		}
 

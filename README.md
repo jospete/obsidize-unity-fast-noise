@@ -23,13 +23,13 @@ using Obsidize.FastNoise;
 public class ExampleScript : MonoBehaviour
 {
 	
-	public FastNoisePreset noisePreset;
-	private FastNoiseContext noise;
+	[SerializeField] private FastNoiseModule _noiseModule;
+	private FastNoiseContext _noise;
 	
 	private void Start()
 	{
-		noise = noisePreset.CreateContext();
-		noise.SetSeed(12345);
+		_noise = _noiseModule.CreateContext();
+		_noise.SetSeed(12345);
 		Debug.Log("some random point: " + noise.GetNoise(55f, 123.4f));
 	}
 }

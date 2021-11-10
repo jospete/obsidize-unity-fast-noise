@@ -12,20 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3929a84b50c4d754b88c5539398ee801, type: 3}
   m_Name: ModuleSample_Mountains
   m_EditorClassIdentifier: 
-  preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: -1137, y: 2745}
-    density: 4
-    zoom: 1
   _preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: -1137, y: 2745}
-    density: 4
-    zoom: 1
+    _seed: 1337
+    _format: 0
+    _lowColor: {r: 0, g: 0, b: 0, a: 1}
+    _highColor: {r: 1, g: 1, b: 1, a: 1}
+    _density: 4
+    _zoom: 0.27500004
+    _offset: {x: 22, y: 239}
   _options:
     _noiseType: 2
     _rotationType3D: 0
@@ -39,19 +33,6 @@ MonoBehaviour:
     _cellularDistanceFunction: 2
     _cellularReturnType: 0
     _cellularJitterModifier: 2.32
+    _useDomainWarp: 1
     _domainWarpType: 0
     _domainWarpAmp: 191.3
-  _noiseType: 2
-  _rotationType3D: 0
-  _frequency: 0.008
-  _fractalType: 1
-  _octaves: 4
-  _lacunarity: 0
-  _gain: 0
-  _weightedStrength: 4.97
-  _pingPongStength: 0
-  _cellularDistanceFunction: 2
-  _cellularReturnType: 0
-  _cellularJitterModifier: 2.32
-  _domainWarpType: 0
-  _domainWarpAmp: 191.3

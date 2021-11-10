@@ -5,6 +5,12 @@ namespace Obsidize.FastNoise
 	public static class FastNoiseContextExtensions
 	{
 
+		// Allows for simple 1D noise queries
+		public static float GetNoise(this IFastNoiseContext context, float offset)
+		{
+			return context.GetNoise(offset, 0f);
+		}
+
 		public static float GetNoise(this IFastNoiseContext context, Vector2 position)
 		{
 			return context.GetNoise(position.x, position.y);

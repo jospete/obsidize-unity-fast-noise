@@ -5,7 +5,10 @@ namespace Obsidize.FastNoise
 	public abstract class FastNoisePipe : FastNoiseModule, IFastNoiseTransformationContextOperator
 	{
 
-		[SerializeField] private FastNoiseModule _inputSource;
+		[Space]
+		[Header("Transform Options")]
+		[SerializeField]
+		private FastNoiseModule _inputSource;
 
 		public FastNoiseModule InputSource => _inputSource;
 		public bool HasInputSource => _inputSource != null;

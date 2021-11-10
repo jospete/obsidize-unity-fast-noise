@@ -12,20 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3929a84b50c4d754b88c5539398ee801, type: 3}
   m_Name: ModuleSample_Perlin
   m_EditorClassIdentifier: 
-  preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
-    density: 3
-    zoom: 0.5
   _preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
-    density: 3
-    zoom: 0.5
+    _seed: 1337
+    _format: 1
+    _lowColor: {r: 0, g: 0, b: 0, a: 1}
+    _highColor: {r: 1, g: 1, b: 1, a: 1}
+    _density: 4
+    _zoom: 1
+    _offset: {x: 2103, y: 186}
   _options:
     _noiseType: 3
     _rotationType3D: 0
@@ -39,19 +33,6 @@ MonoBehaviour:
     _cellularDistanceFunction: 1
     _cellularReturnType: 1
     _cellularJitterModifier: 0
+    _useDomainWarp: 1
     _domainWarpType: 2
     _domainWarpAmp: 0
-  _noiseType: 3
-  _rotationType3D: 0
-  _frequency: 0.02
-  _fractalType: 1
-  _octaves: 5
-  _lacunarity: 2.02
-  _gain: 0.5
-  _weightedStrength: -0.8
-  _pingPongStength: 0
-  _cellularDistanceFunction: 1
-  _cellularReturnType: 1
-  _cellularJitterModifier: 0
-  _domainWarpType: 2
-  _domainWarpAmp: 0

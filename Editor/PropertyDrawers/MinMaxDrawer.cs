@@ -8,7 +8,7 @@ namespace Obsidize.FastNoise.EditorTools
 	/// Loosely based on https://github.com/GucioDevs/SimpleMinMaxSlider/tree/upm
 	/// </summary>
 	[CustomPropertyDrawer(typeof(MinMaxAttribute))]
-	public class MinMaxRangeDrawer : PropertyDrawer
+	public class MinMaxDrawer : PropertyDrawer
 	{
 
 		private const string minPropertyName = "_min";

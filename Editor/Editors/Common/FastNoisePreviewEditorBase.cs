@@ -10,16 +10,15 @@ namespace Obsidize.FastNoise.EditorTools
 		private const float minDragDamp = 0.25f;
 
 		private Texture2D _previewTexture;
+		private bool _previewOptionsChanged;
 		private bool _textureRequiresInit;
 		private bool _hasActiveDrag;
-		private bool _manualSetDirty;
+
+		public abstract FastNoisePreviewOptions FastNoisePreview { get; }
+		public abstract void UpdatePreviewTexture();
 
 		public Texture2D FastNoisePreviewTexture => _previewTexture;
 		public int FastNoisePreviewTextureHeight => _previewTexture != null ? _previewTexture.height : 0;
-
-		public abstract FastNoisePreviewOptions FastNoisePreview { get; }
-
-		public abstract void UpdatePreviewTexture();
 
 		private void UpdateZoom(float delta)
 		{
@@ -35,7 +34,7 @@ namespace Obsidize.FastNoise.EditorTools
 
 			if (FastNoisePreview == null) return;
 
-			FastNoisePreview.offset += new Vector2Int(
+			FastNoisePreview.Offset += new Vector2Int(
 				-Mathf.RoundToInt(delta.x),
 				Mathf.RoundToInt(delta.y)
 			);
@@ -103,20 +102,40 @@ namespace Obsidize.FastNoise.EditorTools
 		public void DrawFastNoisePreviewOptions(bool forceTextureUpdate)
 		{
 
+			if (FastNoisePreview == null) return;
+
 			EditorGUILayout.Space();
 			EditorGUILayout.Space();
+
+			EditorGUILayout.LabelField("Preview Options", EditorStyles.boldLabel);
+
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
+
 			EditorGUILayout.BeginHorizontal();
+
+			if (GUILayout.Button("Reset Zoom"))
+			{
+				FastNoisePreview.ResetZoom();
+				_previewOptionsChanged = true;
+			}
+
+			if (GUILayout.Button("Reset Density"))
+			{
+				FastNoisePreview.ResetDensity();
+				_previewOptionsChanged = true;
+			}
 
 			if (GUILayout.Button("Reset Offset"))
 			{
 				FastNoisePreview.ResetOffset();
-				_manualSetDirty = true;
+				_previewOptionsChanged = true;
 			}
 
 			if (GUILayout.Button("Invert Color Range"))
 			{
 				FastNoisePreview.SwapColorRange();
-				_manualSetDirty = true;
+				_previewOptionsChanged = true;
 			}
 
 			EditorGUILayout.EndHorizontal();
@@ -129,14 +148,9 @@ namespace Obsidize.FastNoise.EditorTools
 
 			_textureRequiresInit = !FastNoisePreview.ValidateTextureDimensions(ref _previewTexture);
 
-			if (forceTextureUpdate || _textureRequiresInit || _manualSetDirty)
+			if (forceTextureUpdate || _textureRequiresInit || _previewOptionsChanged)
 			{
 				UpdatePreviewTexture();
-			}
-
-			if (_manualSetDirty)
-			{
-				EditorUtility.SetDirty(target);
 			}
 		}
 	}

@@ -61,14 +61,6 @@ namespace Obsidize.FastNoise
 			return domainWarp ? GetLerpDomainWarpNoise(noise, x, y, z) : GetLerpNoise(noise, x, y, z);
 		}
 
-		public static void SetPreviewOptions(this FastNoiseLite noise, FastNoiseOptions options, FastNoisePreviewOptions previewOptions)
-		{
-			if (noise == null || options == null || previewOptions == null) return;
-
-			noise.SetOptions(options);
-			noise.SetSeed(previewOptions.seed);
-		}
-
 		public static void SetOptions(this FastNoiseLite noise, FastNoiseOptions options)
 		{
 			if (noise == null || options == null) return;

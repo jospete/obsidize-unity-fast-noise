@@ -7,7 +7,9 @@ namespace Obsidize.FastNoise
 	public class FastNoisePreset : FastNoiseModule
 	{
 
-		[SerializeField] private FastNoiseOptions _options = new FastNoiseOptions();
+		[Space]
+		[SerializeField]
+		private FastNoiseOptions _options = new FastNoiseOptions();
 
 		public FastNoiseOptions Options => _options;
 

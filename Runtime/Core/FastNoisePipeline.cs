@@ -6,7 +6,11 @@ namespace Obsidize.FastNoise
 	public abstract class FastNoisePipeline : FastNoiseModule, IFastNoiseAggregatorContextOperator<FastNoisePipelineLayer>
 	{
 
-		[SerializeField] private List<FastNoiseModule> _modules;
+		[Space]
+		[Header("Pipeline Options")]
+		[SerializeField]
+		private List<FastNoiseModule> _modules;
+
 		private FastNoisePipelineLayer[] _layers;
 
 		public IReadOnlyCollection<FastNoiseModule> Modules => _modules;
