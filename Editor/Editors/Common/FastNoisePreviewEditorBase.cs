@@ -81,6 +81,7 @@ namespace Obsidize.FastNoise.EditorTools
 
 				// As the size of the preview grows, the drag event should shrink
 				var damp = Mathf.Max(minDragDamp, (textureHeight / previewArea.height));
+
 				UpdateConfigOffset(e.delta * damp);
 				e.Use();
 			}

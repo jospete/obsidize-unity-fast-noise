@@ -16,9 +16,24 @@ namespace Obsidize.FastNoise
 		{
 		}
 
+		public override void SetSeed(int seed)
+		{
+			if (HasSources) base.SetSeed(seed);
+		}
+
+		public override float GetNoise(float x, float y)
+		{
+			return HasSources ? base.GetNoise(x, y) : 0f;
+		}
+
+		public override float GetNoise(float x, float y, float z)
+		{
+			return HasSources ? base.GetNoise(x, y, z) : 0f;
+		}
+
 		protected override void SetSourceSeed(T source, int seed)
 		{
-			if (source == null || source.Context == null) base.SetSourceSeed(source, seed);
+			if (source != null && source.Context != null) base.SetSourceSeed(source, seed);
 		}
 
 		protected override float CombineSourceNoise(T source, float accumulator, float x, float y)
@@ -33,21 +48,6 @@ namespace Obsidize.FastNoise
 			return (source != null && source.Context != null)
 				? base.CombineSourceNoise(source, accumulator, x, y, z)
 				: accumulator;
-		}
-
-		public override void SetSeed(int seed)
-		{
-			if (HasSources) base.SetSeed(seed);
-		}
-
-		public override float GetNoise(float x, float y)
-		{
-			return HasSources ? base.GetNoise(x, y) : 0f;
-		}
-
-		public override float GetNoise(float x, float y, float z)
-		{
-			return HasSources ? base.GetNoise(x, y, z) : 0f;
 		}
 	}
 }

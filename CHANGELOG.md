@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.1.0
+
+- Add preview option to show noise in 1D variation
+- Documentation updates
+
 ## 2.0.2
 
 - Fix circular dependency checking logic that did not account for some cases, which would end up crashing the unity editor
