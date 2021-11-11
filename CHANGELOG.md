@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.0
+
+- Add 3D Terrain Generator Sample Project
+
 ## 2.1.0
 
 - Add preview option to show noise in 1D variation

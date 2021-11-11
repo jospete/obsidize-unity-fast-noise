@@ -1,6 +1,6 @@
 {
 	"name": "com.obsidize.unity.fast-noise",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"displayName": "Fast Noise",
 	"description": "Procedural noise generation assets based on the Auburn/FastNoiseLite library",
 	"unity": "2019.4",
@@ -30,6 +30,11 @@
 			"displayName": "Presets",
 			"description": "Useful noise map presets to start from",
 			"path": "Samples/SamplesPresets"
+		},
+		{
+			"displayName": "3D Terrain Generator",
+			"description": "3D noise height map visualizer",
+			"path": "Samples/SamplesMeshTerrain3D"
 		}
 	]
 }
