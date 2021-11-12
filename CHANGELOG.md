@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.3.0
+
+- Add PlaneMeshBuilder, PlaneMeshBuilder2D and PlaneMeshBuilder3D utility classes for better noise visualization support.
+
 ## 2.2.0
 
 - Add 3D Terrain Generator Sample Project

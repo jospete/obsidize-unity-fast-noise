@@ -8,31 +8,28 @@ public class Noise3DTerrainChunk : MonoBehaviour
 	[SerializeField] private MeshFilter _noiseMeshFilter;
 	[SerializeField] private MeshCollider _noiseMeshCollider;
 
-	private readonly PlaneMeshBuilder meshBuilder = new PlaneMeshBuilder();
+	private readonly PlaneMeshBuilder3D meshBuilder = new PlaneMeshBuilder3D();
 
 	private Mesh noiseMesh;
 	private Color[] _colors;
 
-	public void Generate(RectInt bounds, FastNoiseContext noise, Noise3DTerrainChunkOptions options, bool reposition = false)
+	private void MoveToBoundsPosition(RectInt bounds)
 	{
+		var position = bounds.position;
+		transform.localPosition = new Vector3(position.x, 0f, position.y);
+	}
 
-		if (noise == null || options == null)
-		{
-			return;
-		}
-
+	private void EnsureMeshCreated()
+	{
 		if (noiseMesh == null)
 		{
 			noiseMesh = _noiseMeshCollider.sharedMesh = _noiseMeshFilter.mesh = new Mesh();
 			noiseMesh.name = "Custom Mesh";
 		}
+	}
 
-		var position = bounds.position;
-
-		if (reposition)
-		{
-			transform.localPosition = new Vector3(position.x, 0f, position.y);
-		}
+	private void ResizeToFitBounds(RectInt bounds)
+	{
 
 		meshBuilder.Resize(bounds.size);
 
@@ -40,6 +37,10 @@ public class Noise3DTerrainChunk : MonoBehaviour
 		{
 			System.Array.Resize(ref _colors, meshBuilder.VertexCount);
 		}
+	}
+
+	private void SyncMeshData(RectInt bounds, FastNoiseContext noise, Noise3DTerrainChunkOptions options)
+	{
 
 		int offset = 0;
 		var maxHeight = options.MaxHeight;
@@ -59,6 +60,24 @@ public class Noise3DTerrainChunk : MonoBehaviour
 				offset++;
 			}
 		}
+	}
+
+	public void Generate(RectInt bounds, FastNoiseContext noise, Noise3DTerrainChunkOptions options, bool reposition = false)
+	{
+
+		if (noise == null || options == null)
+		{
+			return;
+		}
+
+		if (reposition)
+		{
+			MoveToBoundsPosition(bounds);
+		}
+
+		EnsureMeshCreated();
+		ResizeToFitBounds(bounds);
+		SyncMeshData(bounds, noise, options);
 
 		noiseMesh.Clear();
 		meshBuilder.ApplyTo(noiseMesh);

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: TestNoise3DTerrainOptions
   m_EditorClassIdentifier: 
   _noiseModule: {fileID: 11400000, guid: ec7ca7e5b37cee04a8459b0953e35421, type: 2}
-  _maxHeight: 50
   _heightMapGradient:
     serializedVersion: 2
     key0: {r: 0.9056604, g: 0.60492927, b: 0, a: 1}
@@ -44,4 +43,5 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   _chunkPrefab: {fileID: 4313211236010475868, guid: d80f3cfc4d7043747899948ba002337b, type: 3}
-  _chunkSize: {x: 100, y: 100}
+  _maxHeight: 50
+  _chunkSize: {x: 128, y: 128}
