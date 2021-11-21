@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.3.1
+
+- Rename FastNoiseLiteUtility to the more appropriate FastNoiseLiteExtensions
+- Replace hard-coded min (0f) and max (1f) values with shared constant references
+
 ## 2.3.0
 
 - Add PlaneMeshBuilder, PlaneMeshBuilder2D and PlaneMeshBuilder3D utility classes for better noise visualization support.
