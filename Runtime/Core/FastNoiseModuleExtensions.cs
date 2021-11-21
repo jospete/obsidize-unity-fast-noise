@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Obsidize.FastNoise
 {
-	public static class FastNoiseModuleUtility
+	public static class FastNoiseModuleExtensions
 	{
 
 		public static bool IsPipe(this FastNoiseModule module)

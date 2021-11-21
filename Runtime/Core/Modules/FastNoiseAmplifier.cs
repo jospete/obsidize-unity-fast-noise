@@ -9,9 +9,12 @@ namespace Obsidize.FastNoise
 	public class FastNoiseAmplifier : FastNoisePipe
 	{
 
-		[SerializeField] [MinMax(0f, 1f)] private MinMaxRange _trim = MinMaxRange.DefaultLerpRange();
-		[SerializeField] [Range(0f, 1f)] private float _upperBound = 1f;
-		[SerializeField] [Range(0f, 1f)] private float _growth = 1f;
+		private const float min = FastNoiseLiteExtensions.ofnlMin;
+		private const float max = FastNoiseLiteExtensions.ofnlMax;
+
+		[SerializeField] [MinMax(min, max)] private MinMaxRange _trim = MinMaxRange.DefaultLerpRange();
+		[SerializeField] [Range(min, max)] private float _upperBound = max;
+		[SerializeField] [Range(min, max)] private float _growth = max;
 
 		public MinMaxRange Trim => _trim;
 		public float UpperBound => _upperBound;

@@ -5,9 +5,18 @@ namespace Obsidize.FastNoise
 	public static class FastNoiseLiteExtensions
 	{
 
+		public const float fnlMin = -1f;
+		public const float fnlMax = 1f;
+
+		public const float ofnlMin = 0f;
+		public const float ofnlMax = 1f;
+
+		private const float fnlRangeSize = fnlMax - fnlMin;
+
+
 		// FastNoiseLite returns in range [-1,1]
 		// so we scale the value to be in range [0,1] here for lerp / height map calls.
-		private static float ScaleNoiseValue(float v) => Mathf.Clamp01((v + 1f) / 2f);
+		private static float ScaleNoiseValue(float v) => Mathf.Clamp01((v + fnlMax) / fnlRangeSize);
 
 		public static float GetLerpNoise(this FastNoiseLite noise, float x, float y)
 		{

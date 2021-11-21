@@ -10,6 +10,9 @@ namespace Obsidize.FastNoise
 	/// </summary>
 	public class AdaptiveFastNoiseAggregatorContext<T> : FastNoiseAggregatorContext<T> where T : IFastNoiseAggregatorContextSource
 	{
+
+		private const float min = FastNoiseLiteExtensions.ofnlMin;
+
 		public AdaptiveFastNoiseAggregatorContext(
 			IFastNoiseAggregatorContextOperator<T> aggregatorOperator
 		) : base(aggregatorOperator)
@@ -23,12 +26,12 @@ namespace Obsidize.FastNoise
 
 		public override float GetNoise(float x, float y)
 		{
-			return HasSources ? base.GetNoise(x, y) : 0f;
+			return HasSources ? base.GetNoise(x, y) : min;
 		}
 
 		public override float GetNoise(float x, float y, float z)
 		{
-			return HasSources ? base.GetNoise(x, y, z) : 0f;
+			return HasSources ? base.GetNoise(x, y, z) : min;
 		}
 
 		protected override void SetSourceSeed(T source, int seed)

@@ -5,6 +5,8 @@ namespace Obsidize.FastNoise
 	public class FastNoiseAggregatorContext<T> : FastNoiseContext where T : IFastNoiseAggregatorContextSource
 	{
 
+		private const float min = FastNoiseLiteExtensions.ofnlMin;
+
 		private readonly IFastNoiseAggregatorContextOperator<T> _aggregatorOperator;
 
 		public IFastNoiseAggregatorContextOperator<T> AggregatorOperator => _aggregatorOperator;
@@ -46,7 +48,7 @@ namespace Obsidize.FastNoise
 		public override float GetNoise(float x, float y)
 		{
 
-			float result = 0f;
+			float result = min;
 
 			foreach (var source in AggregatorOperator.Sources)
 			{
@@ -59,7 +61,7 @@ namespace Obsidize.FastNoise
 		public override float GetNoise(float x, float y, float z)
 		{
 
-			float result = 0f;
+			float result = min;
 
 			foreach (var source in AggregatorOperator.Sources)
 			{

@@ -9,9 +9,11 @@ namespace Obsidize.FastNoise
 	public class FastNoiseInverter : FastNoisePipe
 	{
 
+		private const float max = FastNoiseLiteExtensions.ofnlMax;
+
 		public override float TransformNoise(float noise)
 		{
-			return 1f - noise;
+			return max - noise;
 		}
 	}
 }

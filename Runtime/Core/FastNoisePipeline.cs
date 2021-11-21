@@ -16,10 +16,12 @@ namespace Obsidize.FastNoise
 		public IReadOnlyCollection<FastNoiseModule> Modules => _modules;
 		public int ModuleCount => _modules != null ? _modules.Count : 0;
 		public bool HasModules => ModuleCount > 0;
+
+		public IReadOnlyCollection<FastNoisePipelineLayer> Sources => _layers;
 		public int LayerCount => _layers != null ? _layers.Length : 0;
 		public bool HasLayers => LayerCount > 0;
+
 		public bool LayersAreDesynced => ModuleCount != LayerCount;
-		public IReadOnlyCollection<FastNoisePipelineLayer> Sources => _layers;
 
 		protected abstract FastNoisePipelineLayer CreateLayer();
 
