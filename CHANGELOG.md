@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.3.2
+
+- Fix editor tools assembly definition to only target editor platform
+- Update Noise Terrain 3D Sample to be fully deployable
+
 ## 2.3.1
 
 - Rename FastNoiseLiteUtility to the more appropriate FastNoiseLiteExtensions
