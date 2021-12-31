@@ -7,14 +7,14 @@ public class Noise3DTerrainChunkOptions : ScriptableObject
 
 	[SerializeField] private FastNoiseModule _noiseModule;
 	[SerializeField] private Gradient _heightMapGradient;
-	[SerializeField] private Noise3DTerrainChunk _chunkPrefab;
+	[SerializeField] private Noise3DTerrainChunkBase _chunkPrefab;
 	[SerializeField] private float _maxHeight = 50f;
 	[SerializeField] private Vector2Int _chunkSize = Vector2Int.one;
 
 	public FastNoiseModule NoiseModule => _noiseModule;
 	public float MaxHeight => _maxHeight;
 	public Gradient HeightMapGradient => _heightMapGradient;
-	public Noise3DTerrainChunk ChunkPrefab => _chunkPrefab;
+	public Noise3DTerrainChunkBase ChunkPrefab => _chunkPrefab;
 	public Vector2Int ChunkSize => _chunkSize;
 
 	private void OnValidate()

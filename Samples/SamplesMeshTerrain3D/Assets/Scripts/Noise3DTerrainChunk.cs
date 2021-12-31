@@ -2,7 +2,7 @@ using UnityEngine;
 using Obsidize.FastNoise;
 
 [DisallowMultipleComponent]
-public class Noise3DTerrainChunk : MonoBehaviour
+public class Noise3DTerrainChunk : Noise3DTerrainChunkBase
 {
 
 	[SerializeField] private MeshFilter _noiseMeshFilter;
@@ -62,7 +62,12 @@ public class Noise3DTerrainChunk : MonoBehaviour
 		}
 	}
 
-	public void Generate(RectInt bounds, FastNoiseContext noise, Noise3DTerrainChunkOptions options, bool reposition = false)
+	public override void Generate(RectInt bounds, FastNoiseContext noise, Noise3DTerrainChunkOptions options)
+	{
+		Generate(bounds, noise, options, false);
+	}
+
+	public void Generate(RectInt bounds, FastNoiseContext noise, Noise3DTerrainChunkOptions options, bool reposition)
 	{
 
 		if (noise == null || options == null)
