@@ -1,3 +1,4 @@
+using Obsidize.RangeInput;
 using UnityEngine;
 
 namespace Obsidize.FastNoise
@@ -13,7 +14,7 @@ namespace Obsidize.FastNoise
 		private const float min = FastNoiseLiteExtensions.ofnlMin;
 		private const float max = FastNoiseLiteExtensions.ofnlMax;
 
-		[SerializeField] [MinMax(min, max)] private MinMaxRange _trim = MinMaxRange.DefaultLerpRange();
+		[SerializeField] [MinMax(min, max)] private MinMaxRange _trim = new MinMaxRange(min, max);
 		[SerializeField] [Range(min, max)] private float _lowerBound = min;
 		[SerializeField] [Range(min, max)] private float _decay = max;
 

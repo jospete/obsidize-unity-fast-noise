@@ -17,6 +17,9 @@
 		"type": "git",
 		"url": "https://github.com/jospete/obsidize-unity-fast-noise.git"
 	},
+	"dependencies": {
+		"com.obsidize.unity.range-input": "https://github.com/jospete/obsidize-unity-range-input.git#v1.0.0"
+	},
 	"keywords": [
 		"noise",
 		"procedural",

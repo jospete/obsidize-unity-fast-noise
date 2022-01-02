@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9c8fc05ad0ed64398cb54f2056d343, type: 3}
   m_Name: TestNoise3DCubeTerrainOptions
   m_EditorClassIdentifier: 
-  _noiseModule: {fileID: 11400000, guid: 02d3cd20363560d4a91fec1e4f9fd0ca, type: 2}
+  _noiseModule: {fileID: 11400000, guid: ec7ca7e5b37cee04a8459b0953e35421, type: 2}
   _heightMapGradient:
     serializedVersion: 2
     key0: {r: 0.9056604, g: 0.60492927, b: 0, a: 1}
