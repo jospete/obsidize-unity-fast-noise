@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.0.0
+
+- Add dependency com.obsidize.unity.range-input
+- Remove internal MinMaxRange implementation in favor of new dependency implementation
+
 ## 2.3.2
 
 - Fix editor tools assembly definition to only target editor platform
