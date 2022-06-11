@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.0.2
+
+- Documentation updates
+- Fix dependency declaration
+
 ## 3.0.1
 
 - Fix dependency com.obsidize.unity.range-input -> com.obsidize.range-input

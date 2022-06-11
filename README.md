@@ -5,6 +5,25 @@ This is a port of the
 C# implementation that adds tools for generating procedural noise configuration
 assets in Unity.
 
+This module was inspired by
+[this GDC talk](https://www.youtube.com/watch?v=LWFzPP8ZbdU&ab_channel=GDC)
+about noise generation, with the idea that noise values should be obtained in a
+dimensional way.
+
+```csharp
+// Bad
+// 1. no way to "look backwards"
+// 2. values depend on previous values in the chain
+// 3. cannot be multi-threaded (easily)
+Random.Next();
+
+// Better
+// 1. always produces the same result given the same coordinates
+// 2. output values are a combination of a starting seed and the given coordinates, so they are not chained together
+// 3. much easier to multi-thread
+NoiseMap.GetNoise(x, y);
+```
+
 ## Installation
 
 This git repo is directly installable via the unity package manager. Simply
