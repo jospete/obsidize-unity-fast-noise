@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Amplifier
   m_EditorClassIdentifier: 
   _preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
+    _seed: 1337
+    _format: 0
+    _lowColor: {r: 0, g: 0, b: 0, a: 1}
+    _highColor: {r: 1, g: 1, b: 1, a: 1}
     _density: 2
     _zoom: 0.5
-  _inputSource: {fileID: 11400000, guid: e97b5c12013bbf34db5a41693deced6f, type: 2}
+    _offset: {x: 3, y: -36}
+  _inputSource: {fileID: 11400000, guid: 95e5b75191eb0c348ae674a2ca922300, type: 2}
   _trim:
-    _min: 0
-    _max: 1
+    _min: 0.35
+    _max: 0.8911729
   _upperBound: 1
-  _growth: 1
+  _growth: 0.099

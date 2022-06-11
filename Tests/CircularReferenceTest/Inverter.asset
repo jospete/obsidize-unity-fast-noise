@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Inverter
   m_EditorClassIdentifier: 
   _preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
+    _seed: 1337
+    _format: 0
+    _lowColor: {r: 0, g: 0, b: 0, a: 1}
+    _highColor: {r: 1, g: 1, b: 1, a: 1}
     _density: 2
     _zoom: 0.5
-  _inputSource: {fileID: 0}
+    _offset: {x: 7, y: -6}
+  _inputSource: {fileID: 11400000, guid: 3de858b47384dab4baec0242c5893104, type: 2}

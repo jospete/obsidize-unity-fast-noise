@@ -1,9 +1,10 @@
 {
-	"name": "com.obsidize.unity.fast-noise",
-	"version": "3.0.0",
+	"name": "com.obsidize.fast-noise",
+	"version": "3.0.1",
 	"displayName": "Fast Noise",
 	"description": "Procedural noise generation assets based on the Auburn/FastNoiseLite library",
 	"unity": "2019.4",
+	"type": "library",
 	"documentationUrl": "https://github.com/jospete/obsidize-unity-fast-noise/blob/master/README.md",
 	"changelogUrl": "https://github.com/jospete/obsidize-unity-fast-noise/blob/master/CHANGELOG.md",
 	"licensesUrl": "https://github.com/jospete/obsidize-unity-fast-noise/blob/master/LICENSE.md",
@@ -18,7 +19,7 @@
 		"url": "https://github.com/jospete/obsidize-unity-fast-noise.git"
 	},
 	"dependencies": {
-		"com.obsidize.unity.range-input": "https://github.com/jospete/obsidize-unity-range-input.git#v1.0.0"
+		"com.obsidize.range-input": "https://github.com/jospete/obsidize-unity-range-input.git#v1.0.2"
 	},
 	"keywords": [
 		"noise",
@@ -28,16 +29,5 @@
 		"simplex",
 		"voronoi"
 	],
-	"samples": [
-		{
-			"displayName": "Presets",
-			"description": "Useful noise map presets to start from",
-			"path": "Samples/SamplesPresets"
-		},
-		{
-			"displayName": "3D Terrain Generator",
-			"description": "3D noise height map visualizer",
-			"path": "Samples/SamplesMeshTerrain3D"
-		}
-	]
+	"samples": []
 }

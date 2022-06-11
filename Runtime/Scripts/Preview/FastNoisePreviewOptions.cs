@@ -39,6 +39,7 @@ namespace Obsidize.FastNoise
 		public int PreviewAspect => Density * densityStep;
 		public float ZoomStep => Mathf.Max(1f, 1 / Mathf.Max(zoomMin, Zoom));
 		public int RoundedZoomStep => Mathf.RoundToInt(ZoomStep);
+		public Vector2Int TextureDimensions => Vector2Int.one * PreviewAspect;
 
 		public NoisePreviewFormat Format
 		{
@@ -125,25 +126,25 @@ namespace Obsidize.FastNoise
 			LowColor = tmp;
 		}
 
-		public FastNoisePreviewOptions Copy()
+		public FastNoisePreviewOptions Clone()
 		{
 			var result = new FastNoisePreviewOptions();
-			result.CopyFrom(this);
+			result.Configure(this);
 			return result;
 		}
 
-		public void CopyFrom(FastNoisePreviewOptions other)
+		public void Configure(FastNoisePreviewOptions options)
 		{
 
-			if (other == null) return;
+			if (options == null) return;
 
-			Format = other.Format;
-			Seed = other.Seed;
-			LowColor = other.LowColor;
-			HighColor = other.HighColor;
-			Density = other.Density;
-			Zoom = other.Zoom;
-			Offset = other.Offset;
+			Format = options.Format;
+			Seed = options.Seed;
+			LowColor = options.LowColor;
+			HighColor = options.HighColor;
+			Density = options.Density;
+			Zoom = options.Zoom;
+			Offset = options.Offset;
 
 			Validate();
 		}
@@ -178,6 +179,32 @@ namespace Obsidize.FastNoise
 
 			texture.SetPixels32(colors, 0);
 			texture.Apply();
+
+			return true;
+		}
+
+		public bool DrawPreviewHeightMap(IFastNoiseContext noise, PlaneMeshBuilder3D meshBuilder, float heightAmplifier = 1f)
+		{
+
+			if (noise == null || meshBuilder == null) return false;
+
+			var offset = Offset;
+			var step = RoundedZoomStep;
+			var xMin = offset.x;
+			var xRange = meshBuilder.VertexWidth * step;
+			var xNoiseMax = xMin + xRange;
+			var yMin = offset.y;
+			var yRange = meshBuilder.VertexHeight * step;
+			var yNoiseMax = yMin + yRange;
+			var index = 0;
+
+			for (int yNoise = yMin; yNoise < yNoiseMax; yNoise += step)
+			{
+				for (int xNoise = xMin; xNoise < xNoiseMax; xNoise += step)
+				{
+					meshBuilder.SetVertexHeight(index++, noise.GetNoise(xNoise, yNoise) * heightAmplifier);
+				}
+			}
 
 			return true;
 		}

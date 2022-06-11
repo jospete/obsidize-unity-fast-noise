@@ -1,9 +1,21 @@
 # CHANGELOG
 
+## 3.0.1
+
+- Fix dependency com.obsidize.unity.range-input -> com.obsidize.range-input
+  (Since apparently unity freaks out if "unity" is in the name of a non-unity
+  package)
+- Move samples out of the scope of this repo since they only serve to cause
+  installation issues
+- Normalize editor namespace from `Obsidize.FastNoise.EditorTools` ->
+  `Obsidize.FastNoise.Editor`
+- Fix misc issues with package declaration
+
 ## 3.0.0
 
 - Add dependency com.obsidize.unity.range-input
-- Remove internal MinMaxRange implementation in favor of new dependency implementation
+- Remove internal MinMaxRange implementation in favor of new dependency
+  implementation
 
 ## 2.3.2
 
@@ -13,11 +25,13 @@
 ## 2.3.1
 
 - Rename FastNoiseLiteUtility to the more appropriate FastNoiseLiteExtensions
-- Replace hard-coded min (0f) and max (1f) values with shared constant references
+- Replace hard-coded min (0f) and max (1f) values with shared constant
+  references
 
 ## 2.3.0
 
-- Add PlaneMeshBuilder, PlaneMeshBuilder2D and PlaneMeshBuilder3D utility classes for better noise visualization support.
+- Add PlaneMeshBuilder, PlaneMeshBuilder2D and PlaneMeshBuilder3D utility
+  classes for better noise visualization support.
 
 ## 2.2.0
 
@@ -30,22 +44,27 @@
 
 ## 2.0.2
 
-- Fix circular dependency checking logic that did not account for some cases, which would end up crashing the unity editor
+- Fix circular dependency checking logic that did not account for some cases,
+  which would end up crashing the unity editor
 
 ## 2.0.1
 
-- Fix issue where FastNoisePipeline was producing an adaptive context for playmode (adaptive context is only meant for editor mode)
+- Fix issue where FastNoisePipeline was producing an adaptive context for
+  playmode (adaptive context is only meant for editor mode)
 
 ## 2.0.0
 
-- Overhaul core FastNoiseModule implementations to require context creation, so that multiple pipeline / module instances can run independently from the same assets
+- Overhaul core FastNoiseModule implementations to require context creation, so
+  that multiple pipeline / module instances can run independently from the same
+  assets
 - Documentation updates
 - Code cleanup
 
 ## 1.2.0
 
 - Refactor Pipeline implementation to allow for generalized sub-classes
-- Add pipeline types: Additive, Influence (Previously default Pipeline implementation)
+- Add pipeline types: Additive, Influence (Previously default Pipeline
+  implementation)
 - Add module type: Inverter
 
 ## 1.1.1
@@ -60,7 +79,8 @@
 
 ## 1.0.6
 
-- Add utility methods to FastNoisePipelineModule for autofilling from Vector*** constructs
+- Add utility methods to FastNoisePipelineModule for autofilling from Vector***
+  constructs
 
 ## 1.0.5
 

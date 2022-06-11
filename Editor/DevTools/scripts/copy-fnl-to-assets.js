@@ -2,8 +2,8 @@
 
 const fs = require('fs');
 
-const sourcePath = '../tmp/FastNoiseLite.cs';
-const destPath = '../Runtime/FastNoiseLite.cs';
+const sourcePath = './tmp/FastNoiseLite.cs';
+const destPath = '../../Runtime/Scripts/Core/FastNoiseLite.cs';
 
 const copyFnlToAssets = () => {
 	const input = fs.readFileSync(sourcePath, 'utf8');

@@ -3,8 +3,8 @@
 const https = require('https');
 const fs = require('fs');
 
-const sourceUrl = 'https://raw.githubusercontent.com/Auburn/FastNoiseLite/v1.0.3/CSharp/FastNoiseLite.cs';
-const destPath = '../tmp/FastNoiseLite.cs';
+const sourceUrl = 'https://raw.githubusercontent.com/Auburn/FastNoiseLite/master/CSharp/FastNoiseLite.cs';
+const destPath = './tmp/FastNoiseLite.cs';
 
 const httpsGet = (url) => {
 	return new Promise(resolve => https.get(url, resolve));

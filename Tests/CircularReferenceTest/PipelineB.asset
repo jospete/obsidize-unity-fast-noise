@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: PipelineB
   m_EditorClassIdentifier: 
   _preview:
-    seed: 1337
-    lowColor: {r: 0, g: 0, b: 0, a: 1}
-    highColor: {r: 1, g: 1, b: 1, a: 1}
-    offset: {x: 0, y: 0}
+    _seed: 1337
+    _format: 0
+    _lowColor: {r: 0, g: 0, b: 0, a: 1}
+    _highColor: {r: 1, g: 1, b: 1, a: 1}
     _density: 2
     _zoom: 0.5
+    _offset: {x: 0, y: 0}
   _modules:
   - {fileID: 11400000, guid: 5057b7d0c730f8644aeca27c1b3ed372, type: 2}
   _layerInfluences:
-  - 0
+  - 1
   _layerInfluenceRatios:
-  - NaN
-  _totalInfluence: 0
+  - 1
+  _totalInfluence: 1
