@@ -19,7 +19,7 @@
 		"url": "https://github.com/jospete/obsidize-unity-fast-noise.git"
 	},
 	"dependencies": {
-		"com.obsidize.range-input": "https://github.com/jospete/obsidize-unity-range-input.git#1.0.2"
+		"com.obsidize.range-input": "git+https://github.com/jospete/obsidize-unity-range-input.git#1.0.2"
 	},
 	"keywords": [
 		"noise",
