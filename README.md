@@ -26,9 +26,8 @@ NoiseMap.GetNoise(x, y);
 
 ## Installation
 
-This git repo is directly installable via the unity package manager. Simply
-paste the repo url into the package manager "add" menu and unity will do the
-rest.
+The easiest way to install this package is by downloading the main bundle under
+`Bundles/`
 
 ## Usage
 

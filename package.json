@@ -1,6 +1,6 @@
 {
 	"name": "com.obsidize.fast-noise",
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"displayName": "Fast Noise",
 	"description": "Procedural noise generation assets based on the Auburn/FastNoiseLite library",
 	"unity": "2019.4",

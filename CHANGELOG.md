@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.3
+
+- Add static bundle export as alternative asset import option
+
 ## 3.0.2
 
 - Documentation updates
