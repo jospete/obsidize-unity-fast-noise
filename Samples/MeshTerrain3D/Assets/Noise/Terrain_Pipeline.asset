@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d442d7c02e5d3014a88c30aa29b03164, type: 3}
+  m_Name: Terrain_Pipeline
+  m_EditorClassIdentifier: 
+  _preview:
+    _seed: 1337
+    _format: 0
+    _lowColor: {r: 0, g: 0, b: 0, a: 1}
+    _highColor: {r: 1, g: 1, b: 1, a: 1}
+    _density: 4
+    _zoom: 0.5
+    _offset: {x: -79, y: 82}
+  _modules:
+  - {fileID: 11400000, guid: 660cc21285119124ab707a61233ce497, type: 2}
+  - {fileID: 11400000, guid: e8cd936894cea724eb7ac085bbaaabe5, type: 2}
+  - {fileID: 11400000, guid: 02d3cd20363560d4a91fec1e4f9fd0ca, type: 2}
+  _layerInfluences:
+  - 1
+  - 1
+  - 1
+  _layerInfluenceRatios:
+  - 0.33333334
+  - 0.33333334
+  - 0.33333334
+  _totalInfluence: 3
